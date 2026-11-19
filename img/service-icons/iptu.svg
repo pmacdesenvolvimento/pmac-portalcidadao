@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 76">
+  <rect x="57" y="5" width="27" height="34" rx="3" fill="#f7fafc" stroke="#90a4ae" stroke-width="2"/>
+  <path d="M64 14h13M64 19h10M64 24h13" stroke="#7b9aaa" stroke-width="2" stroke-linecap="round"/>
+  <path d="M10 48 43 34l22 10-34 15z" fill="#52b788"/>
+  <path d="M10 48v8l21 11V59z" fill="#2d9c67"/>
+  <path d="m31 59 34-15v8L31 67z" fill="#188455"/>
+  <path d="m17 48 7-3 14 7-7 3z" fill="#b9e6c8"/>
+  <ellipse cx="70" cy="59" rx="11" ry="4" fill="#d89a28"/>
+  <path d="M59 54v5c0 2 5 4 11 4s11-2 11-4v-5" fill="#f3bf4f"/>
+  <ellipse cx="70" cy="54" rx="11" ry="4" fill="#ffda75"/>
+  <rect x="75" y="35" width="17" height="27" rx="3" fill="#526779"/>
+  <rect x="78" y="39" width="11" height="6" rx="1" fill="#a8d7e8"/>
+  <g fill="#eaf3f6">
+    <rect x="78" y="48" width="3" height="3" rx="1"/>
+    <rect x="83" y="48" width="3" height="3" rx="1"/>
+    <rect x="88" y="48" width="2" height="3" rx="1"/>
+    <rect x="78" y="54" width="3" height="3" rx="1"/>
+    <rect x="83" y="54" width="3" height="3" rx="1"/>
+    <rect x="88" y="54" width="2" height="3" rx="1"/>
+  </g>
+</svg>

@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Cidadão</title>
+    <link rel="stylesheet" href="css/style.css?v=45" />
+    <!-- Ícones do Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Container Principal -->
+    <div class="app-layout">
+      <!-- Fundo com imagem da cidade -->
+      <div class="hero-bg"></div>
+
+      <!-- Cabeçalho Mobile (Exibido apenas em telas menores) -->
+      <header class="mobile-header">
+        <div class="mobile-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Ativar tema escuro"
+            aria-pressed="false"
+          >
+            <i
+              class="theme-toggle-icon fa-solid fa-moon"
+              aria-hidden="true"
+            ></i>
+            <span class="theme-toggle-label">Tema escuro</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="top-welcome" aria-label="Portal do Cidadão">
+          <img
+            src="img/portalcidadao.png"
+            alt="Imagem de Arraial do Cabo"
+            class="welcome-image"
+          />
+          <div class="page-banner">
+            <div class="page-banner-brand">
+              <img
+                src="img/coatofarmsblue.png"
+                data-light-src="img/coatofarmsblue.png"
+                data-dark-src="img/pmachbranca.png"
+                class="municipal-logo"
+                alt="Brasão da Prefeitura de Arraial do Cabo"
+              />
+            </div>
+
+            <div class="banner-nav-dropdowns">
+              <aside class="nav-dropdown" id="sidebar">
+                <button
+                  class="nav-dropdown-toggle"
+                  id="menuToggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="menuPanel"
+                >
+                  <i
+                    class="fa-solid fa-clipboard-list nav-dropdown-icon"
+                    aria-hidden="true"
+                  ></i>
+                  <span>SERVIÇOS</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+
+                <div class="nav-dropdown-panel mega-menu-panel" id="menuPanel">
+                  <label class="service-catalog-search service-offerings-search">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <span class="sr-only">Buscar serviços on-line e presenciais</span>
+                    <input
+                      id="serviceCatalogSearch"
+                      type="search"
+                      placeholder="Ex.: IPTU, saúde, escola..."
+                      autocomplete="off"
+                    />
+                  </label>
+                  <div class="mega-menu-columns service-offerings-columns">
+                    <section
+                      class="service-catalog-panel service-offerings-catalog"
+                      id="onlineServicesPanel"
+                      data-modality="ON-LINE"
+                    >
+                      <div class="service-catalog-header">
+                        <div>
+                          <h3 class="mega-menu-title service-category-title">
+                            <img
+                              src="img/brasao-arraial-azul.png"
+                              data-light-src="img/brasao-arraial-azul.png"
+                              data-dark-src="img/brasao-arraial-branco.png"
+                              class="municipal-logo service-category-emblem"
+                              alt=""
+                            />
+                            <span>SERVIÇOS ON-LINE</span>
+                          </h3>
+                        </div>
+                      </div>
+
+                      <p
+                        class="service-catalog-count"
+                        id="onlineServicesCount"
+                        aria-live="polite"
+                      ></p>
+                      <ul
+                        class="service-catalog-list"
+                        id="onlineServicesList"
+                        aria-label="Serviços on-line disponíveis na prévia"
+                      ></ul>
+                      <p class="service-catalog-empty" id="onlineServicesEmpty" hidden>
+                        Nenhum serviço on-line encontrado para essa busca.
+                      </p>
+                    </section>
+
+                    <section
+                      class="service-catalog-panel service-offerings-catalog"
+                      id="inPersonServicesPanel"
+                      data-modality="PRESENCIAL"
+                    >
+                      <div class="service-catalog-header">
+                        <div>
+                          <h3 class="mega-menu-title service-category-title">
+                            <img
+                              src="img/brasao-arraial-azul.png"
+                              data-light-src="img/brasao-arraial-azul.png"
+                              data-dark-src="img/brasao-arraial-branco.png"
+                              class="municipal-logo service-category-emblem"
+                              alt=""
+                            />
+                            <span>SERVIÇOS PRESENCIAIS</span>
+                          </h3>
+                        </div>
+                      </div>
+
+                      <p
+                        class="service-catalog-count"
+                        id="inPersonServicesCount"
+                        aria-live="polite"
+                      ></p>
+                      <ul
+                        class="service-catalog-list"
+                        id="inPersonServicesList"
+                        aria-label="Serviços presenciais disponíveis na prévia"
+                      ></ul>
+                      <p class="service-catalog-empty" id="inPersonServicesEmpty" hidden>
+                        Nenhum serviço presencial encontrado para essa busca.
+                      </p>
+                    </section>
+
+                    <section class="mega-menu-column gov-services-category">
+                      <div class="service-catalog-header">
+                        <h3 class="mega-menu-title service-category-title">
+                          <svg
+                            class="service-category-flag"
+                            viewBox="0 0 30 20"
+                            role="img"
+                            aria-label="Bandeira do Brasil"
+                          >
+                            <rect width="30" height="20" rx="1.5" fill="#009b3a" />
+                            <path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00" />
+                            <circle cx="15" cy="10" r="4.8" fill="#002776" />
+                          </svg>
+                          <span>SERVIÇOS GOV.BR</span>
+                        </h3>
+                      </div>
+                      <p class="service-catalog-count">6 páginas web</p>
+                      <ul class="mega-menu-list institution-menu-list">
+                        <li>
+                          <a href="https://www.gov.br/pt-br/servicos">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/governo-digital.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Acessar o portal de serviços gov.br</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.gov.br/pt-br/servicos/listar_servicos_segmento?segmento=publico_alvo_cidadaos">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/social.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Serviços para cidadãos</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.gov.br/pt-br/servicos/listar_servicos_segmento?segmento=publico_alvo_empresas">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/empresas.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Serviços para empresas</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.gov.br/pt-br/servicos/listar_servicos_segmento?segmento=publico_alvo_servidor">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/administracao.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Serviços para servidores públicos</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.gov.br/pt-br/categorias">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/servico.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Serviços por categoria</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://www.gov.br/pt-br/servicos/listar_orgaos">
+                            <img
+                              class="service-catalog-icon service-catalog-illustration"
+                              src="img/service-icons/prefeitura.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            <span class="institution-menu-label">Serviços por órgão</span>
+                            <span class="service-catalog-marker on-line" aria-hidden="true">ON-LINE</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </section>
+                  </div>
+                </div>
+              </aside>
+
+              <aside class="nav-dropdown" id="autarquiasDropdown">
+                <button
+                  class="nav-dropdown-toggle"
+                  id="autarquiasToggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="autarquiasMenu"
+                >
+                  <i
+                    class="fa-solid fa-building-columns nav-dropdown-icon"
+                    aria-hidden="true"
+                  ></i>
+                  <span>AUTARQUIAS</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+
+                <div
+                  class="nav-dropdown-panel mega-menu-panel compact-dropdown-menu institution-menu-panel"
+                  id="autarquiasMenu"
+                >
+                  <nav aria-label="Autarquias municipais">
+                    <div class="institution-menu-heading">
+                      <p class="service-catalog-eyebrow">PORTAIS INSTITUCIONAIS</p>
+                      <h2 class="institution-menu-heading-title">
+                        <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+                        <span>AUTARQUIAS MUNICIPAIS COM TRANSPARÊNCIA</span>
+                      </h2>
+                    </div>
+                    <ul class="mega-menu-list institution-menu-list">
+                      <li>
+                        <a href="https://www.fipac.rj.gov.br/">
+                          <i class="fa-solid fa-water" aria-hidden="true"></i>
+                          FIPAC- Fundação Instituto de Pesca de Arraial do Cabo
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://funtec.arraial.rj.gov.br/">
+                          <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                          FUNTEC AMBIENTAL - Fundação Municipal de Meio
+                          Ambiente, Pesquisa, Ciência, Tecnologia, Esporte e
+                          Lazer
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://idac.rj.gov.br/">
+                          <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                          IDAC - Instituto de Desenvolvimento de Arraial do Cabo
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </aside>
+
+              <aside class="nav-dropdown" id="acessoCidadaoDropdown">
+                <button
+                  class="nav-dropdown-toggle"
+                  id="acessoCidadaoToggle"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="acessoCidadaoMenu"
+                >
+                  <i
+                    class="fa-solid fa-user nav-dropdown-icon"
+                    aria-hidden="true"
+                  ></i>
+                  <span>ACESSO AO CIDADÃO</span>
+                  <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
+
+                <div
+                  class="nav-dropdown-panel mega-menu-panel"
+                  id="acessoCidadaoMenu"
+                >
+                  <section aria-labelledby="acessoCidadaoHeading">
+                    <div class="institution-menu-heading">
+                      <p class="service-catalog-eyebrow">PORTAL DO CIDADÃO</p>
+                      <h2 id="acessoCidadaoHeading">ACESSO AO CIDADÃO</h2>
+                    </div>
+                    <div class="sidebar-footer">
+                      <div class="user-profile service-account-card">
+                        <i class="fa-solid fa-circle-user service-catalog-icon"></i>
+                        <div class="user-info service-account-info">
+                          <span class="service-account-name">USUÁRIO CIDADÃO</span>
+                          <a href="https://www.arraial.rj.gov.br/login">
+                            <small>Acesse sua conta.</small>
+                          </a>
+                        </div>
+                        <span
+                          class="service-catalog-marker on-line"
+                          aria-hidden="true"
+                        >ON-LINE</span>
+                      </div>
+                      <div class="user-profile service-account-card">
+                        <i class="fa-solid fa-shield-halved service-catalog-icon"></i>
+                        <div class="user-info service-account-info">
+                          <span class="service-account-name">POLÍTICA DE PRIVACIDADE</span>
+                          <a href="https://www.arraial.rj.gov.br/storage/docs/Pol%C3%ADtica%20de%20Privacidade%20e%20Termo%20de%20Uso.pdf">
+                            <small>Acesse o documento.</small>
+                          </a>
+                        </div>
+                        <span
+                          class="service-catalog-marker on-line"
+                          aria-hidden="true"
+                        >ON-LINE</span>
+                      </div>
+                      <div class="user-profile service-account-card">
+                        <i class="fa-solid fa-comments service-catalog-icon"></i>
+                        <div class="user-info service-account-info">
+                          <span class="service-account-name">OUVIDORIA GERAL</span>
+                          <a href="https://www.arraial.rj.gov.br/ouvidoria">
+                            <small>Acesse o serviço.</small>
+                          </a>
+                        </div>
+                        <span
+                          class="service-catalog-marker on-line"
+                          aria-hidden="true"
+                        >ON-LINE</span>
+                      </div>
+                    </div>
+                    <div class="sidebar-awards" aria-label="Premiações municipais">
+                      <img
+                        src="img/transparencia.png"
+                        alt="Prêmio Qualidade em Transparência Diamante"
+                      />
+                      <img
+                        src="img/maturidadedigital.png"
+                        alt="Prêmio Maturidade Digital Ouro"
+                      />
+                    </div>
+                    <div class="sidebar-organization">
+                      <span>Desenvolvimento</span>
+                      <span>Subsecretaria de Ciência e Tecnologia</span>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+
+            </div>
+          </div>
+        </section>
+
+        <div class="top-cards">
+          <section
+            class="welcome-card popular-services-card portal-dashboard-card"
+            aria-labelledby="popular-services-title"
+          >
+            <div class="portal-dashboard-heading">
+              <span class="portal-dashboard-icon" aria-hidden="true">
+                <i class="fa-solid fa-bolt"></i>
+              </span>
+              <div class="popular-services-copy">
+                <p class="popular-services-eyebrow">PORTAL DO CIDADÃO</p>
+                <h2 id="popular-services-title">Serviços mais acessados</h2>
+              </div>
+            </div>
+
+            <div class="portal-dashboard-tools">
+              <div class="portal-tool translation-card" aria-label="Idioma">
+                <span class="portal-tool-label">IDIOMA:</span>
+                <div class="gtranslate_wrapper"></div>
+                <script>
+                  window.gtranslateSettings = {
+                    default_language: "pt",
+                    native_language_names: true,
+                    detect_browser_language: true,
+                    languages: ["pt-br", "en", "es", "fr"],
+                    wrapper_selector: ".gtranslate_wrapper",
+                    alt_flags: { en: "usa" },
+                  };
+                </script>
+                <script
+                  src="https://cdn.gtranslate.net/widgets/latest/flags.js"
+                  defer
+                ></script>
+              </div>
+
+              <div class="portal-tool weather-card" aria-label="Previsão do tempo">
+                <i
+                  class="fa-solid fa-cloud-sun portal-tool-icon"
+                  aria-hidden="true"
+                ></i>
+                <div id="TT_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53">
+                  <a href="https://pt.tutiempo.net/arraial-do-cabo.html"
+                    >Tempo em Arraial do Cabo</a
+                  >
+                </div>
+                <script
+                  type="text/javascript"
+                  src="https://pt.tutiempo.net/s-widget/l_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53"
+                ></script>
+              </div>
+
+              <div class="portal-tool portal-appearance" aria-label="Aparência">
+                <div
+                  class="portal-appearance-controls"
+                  role="group"
+                  aria-label="Tema e contraste"
+                >
+                  <button
+                    class="theme-toggle"
+                    data-theme="light"
+                    type="button"
+                    aria-label="Ativar tema claro"
+                    aria-pressed="false"
+                    title="Ativar tema claro"
+                  >
+                    <i
+                      class="theme-toggle-icon fa-solid fa-sun"
+                      aria-hidden="true"
+                    ></i>
+                    <span class="theme-toggle-label">Claro</span>
+                  </button>
+                  <button
+                    class="theme-toggle"
+                    data-theme="dark"
+                    type="button"
+                    aria-label="Ativar tema escuro"
+                    aria-pressed="false"
+                    title="Ativar tema escuro"
+                  >
+                    <i
+                      class="theme-toggle-icon fa-solid fa-moon"
+                      aria-hidden="true"
+                    ></i>
+                    <span class="theme-toggle-label">Escuro</span>
+                  </button>
+                  <button
+                    class="contrast-toggle"
+                    type="button"
+                    aria-label="Alto contraste"
+                    aria-pressed="false"
+                    title="Alternar alto contraste"
+                  >
+                    <i
+                      class="fa-solid fa-circle-half-stroke"
+                      aria-hidden="true"
+                    ></i>
+                    <span>Contraste</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+        <section
+          class="service-directory"
+          aria-labelledby="service-directory-title"
+        >
+          <div class="service-directory-heading">
+            <div>
+              <p class="service-directory-eyebrow">CATÁLOGO DE SERVIÇOS</p>
+              <h2 id="service-directory-title">Explore por categoria</h2>
+            </div>
+            <p
+              class="service-directory-count"
+              id="serviceDirectoryCount"
+              aria-live="polite"
+            ></p>
+          </div>
+          <div
+            class="service-category-filters"
+            role="group"
+            aria-label="Categorias de serviços"
+          >
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="all"
+              aria-pressed="true"
+            >Todos</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="atendimento"
+              aria-pressed="false"
+            >Atendimento ao cidadão</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="tributos"
+              aria-pressed="false"
+            >Fazenda e tributos</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="educacao"
+              aria-pressed="false"
+            >Educação</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="saude"
+              aria-pressed="false"
+            >Saúde</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="assistencia"
+              aria-pressed="false"
+            >Assistência social e cidadania</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="servidor"
+              aria-pressed="false"
+            >Servidor público</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="governo"
+              aria-pressed="false"
+            >Governo e transparência</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="mobilidade"
+              aria-pressed="false"
+            >Mobilidade e transporte</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="urbanismo"
+              aria-pressed="false"
+            >Obras, urbanismo e habitação</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="servicos-urbanos"
+              aria-pressed="false"
+            >Meio ambiente e serviços urbanos</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="cultura-lazer"
+              aria-pressed="false"
+            >Cultura, esporte e lazer</button>
+            <button
+              class="service-category-filter"
+              type="button"
+              data-service-filter="emprego-renda"
+              aria-pressed="false"
+            >Emprego, renda e desenvolvimento econômico</button>
+          </div>
+        </section>
+        <!-- VLibras -->
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+        <div
+          class="services-grid home-services-grid"
+          id="homeServicesGrid"
+          role="list"
+          aria-label="Serviços disponíveis"
+        >
+          <div class="service-card" data-service-category="tributos">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/iptu.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              2ª VIA DE IPTU
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>Emissão rápida de guias de pagamento do IPTU do ano corrente.</p>
+                <a
+                  href="https://arraial.egov.modernizacao.com.br/ecac/form.jsp?sys=TTB&action=openform&formID=500000111&filter=ACE_Parametro_Tipo_Acesso.Codigo=1"
+                  class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="governo">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/diario.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              DIÁRIO OFICIAL
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Aqui você poderá pesquisar por Decretos, Leis, Portarias e outros
+                  atos oficiais publicados pela Prefeitura Municipal de Arraial do
+                  Cabo.
+                </p>
+                <a href="https://www.arraial.rj.gov.br/diariooficial">Acessar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="servidor">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/contracheque.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              CONTRACHEQUES
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este acesso é exclusivo para servidores públicos da Prefeitura
+                  Municipal de Arraial do Cabo.
+                </p>
+                <a
+                  href="https://arraial.egov.modernizacao.com.br/portal/openform.do?sys=PSP&action=openform&formID=8274"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="governo">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/transparencia.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              TRANSPARÊNCIA
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Acesse informações públicas, incluindo dados financeiros,
+                  licitações, e outros documentos para garantir a transparência e a
+                  prestação de contas à sociedade.
+                </p>
+                <a href="https://transparencia.arraial.modernizacao.com.br/"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="mobilidade">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/onibus.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              ÔNIBUS MUNICIPAL
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Acompanhe em tempo real a localização dos ônibus municipais de
+                  Arraial do Cabo, facilitando o planejamento de suas viagens e
+                  garantindo maior comodidade no transporte público.
+                </p>
+                <a href="https://www.arraial.rj.gov.br/onibus-municipal" class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="governo">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/governo-digital.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              GOVERNO DIGITAL
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Acesse informações sobre Estratégia Digital, Plano de
+                  Transformação Digital, Plano de Recuperação de Desastres, Política
+                  de Segurança da Informação e do Plano Diretor da Tecnologia de
+                  Informação e Comunicação.
+                </p>
+                <a
+                  href="https://www.arraial.rj.gov.br/portalcidadao#governo-digital"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="atendimento">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/esic.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              E-SIC
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço é destinado para acesso de servidores públicos
+                  municipais com credenciais e permissões de acesso reservadas .
+                </p>
+                <a
+                  href="https://falabr.cgu.gov.br/web/login?tipo=8&redirect=/manifestacao/criar?tipo=8"
+                  class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="governo">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/sei.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              SEI 5.0
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Com o SEI, as informações são compartilhadas em tempo real,
+                  proporcionando melhoria no desempenho dos processos da
+                  administração pública, com ganhos em agilidade, produtividade,
+                  transparência, satisfação do público usuário e redução de custos.
+                </p>
+                <a
+                  href="https://lagos.sei.rj.gov.br/sip/login.php?sigla_orgao_sistema=LAGOS&sigla_sistema=SEI&infra_url=L3NlaS8="
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="servidor">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/protocolo-servidor.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              PROTOCOLO
+              FUNCIONÁRIOS
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço é destinado para acesso de servidores públicos
+                  municipais com credenciais e permissões de acesso reservadas .
+                </p>
+                <a
+                  href="https://loginunico.arraial.modernizacao.com.br/loginunico/open.do?sys=SLU"
+                  class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="atendimento">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/protocolo-cidadao.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              PROTOCOLO CIDADÃO
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço está disponível para todo cidadão que queira
+                  consultar o trâmite de seus processos. Tenha em mãos: Número do
+                  Processo - Ano do Processo e a Unidade onde foi protocolado.
+                </p>
+                <a
+                  href="https://admac.modernizacao.com.br/adm/form.jsp?sys=PRO&action=openform&formID=7175"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="atendimento">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/esic.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              E-SIC
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço é destinado para acesso de servidores públicos
+                  municipais com credenciais e permissões de acesso reservadas .
+                </p>
+                <a
+                  href="https://falabr.cgu.gov.br/web/login?tipo=8&redirect=/manifestacao/criar?tipo=8"
+                  class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" data-service-category="governo">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/sei.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              SEI 5.0
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Com o SEI, as informações são compartilhadas em tempo real,
+                  proporcionando melhoria no desempenho dos processos da
+                  administração pública, com ganhos em agilidade, produtividade,
+                  transparência, satisfação do público usuário e redução de custos.
+                </p>
+                <a href="https://www.arraial.rj.gov.br/portal-sei">Acessar</a>
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="atendimento">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/protocolo-cidadao.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              PROTOCOLO CIDADÃO
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço está disponível para todo cidadão que queira
+                  consultar o trâmite de seus processos. Tenha em mãos: Número do
+                  Processo - Ano do Processo e a Unidade onde foi protocolado.
+                </p>
+                <a
+                  href="https://admac.modernizacao.com.br/adm/form.jsp?sys=PRO&action=openform&formID=7175"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="service-card" data-service-category="atendimento">
+            <h3>
+              <img
+                class="service-card-illustration"
+                src="img/service-icons/esic.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              E-SIC
+            </h3>
+            <div class="service-card-details">
+              <div class="service-card-details-content">
+                <p>
+                  Este serviço é destinado para acesso de servidores públicos
+                  municipais com credenciais e permissões de acesso reservadas .
+                </p>
+                <a
+                  href="https://falabr.cgu.gov.br/web/login?tipo=8&redirect=/manifestacao/criar?tipo=8"
+                  class="btn"
+                  >Acessar</a
+                >
+              </div>
+            </div>
+          </div>
+          <p
+            class="service-category-empty"
+            id="serviceCategoryEmpty"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            Ainda não há serviços cadastrados nesta categoria.
+          </p>
+        </div>
+        <footer class="main-footer">
+          <div class="footer-top">
+            <div class="footer-identity">
+              <img
+                class="footer-brand-city"
+                src="img/pmachbranca.png"
+                alt="Prefeitura de Arraial do Cabo"
+              />
+              <div>
+                <p class="footer-eyebrow">PORTAL DO CIDADÃO</p>
+                <p class="footer-tagline">
+                  A Prefeitura mais perto de você.
+                </p>
+              </div>
+            </div>
+
+            <div class="footer-brands" aria-label="Marcas e premiações">
+              <img
+                src="https://www.arraial.rj.gov.br/storage/img/logos/transparencia.png?v=2"
+                alt="Prêmio Qualidade em Transparência Diamante 2025"
+              />
+              <img
+                src="https://www.arraial.rj.gov.br/storage/img/logos/ouro-branca.png?v=2"
+                alt="Prêmio Maturidade Digital Ouro"
+              />
+            </div>
+          </div>
+
+          <div class="footer-columns">
+            <section
+              class="footer-section"
+              aria-labelledby="footer-links-title"
+            >
+              <h2 id="footer-links-title">
+                <i class="fa-solid fa-link" aria-hidden="true"></i>Links
+              </h2>
+              <ul>
+                <li>
+                  <a href="https://www.arraial.rj.gov.br/mapa-do-site">
+                    <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                    Mapa do Site
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.arraial.rj.gov.br/diariooficial">
+                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                    Diário Oficial
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <section
+              class="footer-section"
+              aria-labelledby="footer-contacts-title"
+            >
+              <h2 id="footer-contacts-title">
+                <i
+                  class="fa-solid fa-mobile-screen-button"
+                  aria-hidden="true"
+                ></i>
+                Contatos
+              </h2>
+              <ul>
+                <li>
+                  <a href="mailto:ouvidoria.geral@arraial.rj.gov.br">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                    ouvidoria.geral@arraial.rj.gov.br
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/PrefeituraArraialDoCabo/?locale=pt_BR"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                    Prefeitura de Arraial do Cabo
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/prefeituradearraialdocabo/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    @prefeituradearraialdocabo
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <section
+              class="footer-section"
+              aria-labelledby="footer-addresses-title"
+            >
+              <h2 id="footer-addresses-title">
+                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                Endereços
+              </h2>
+              <address class="footer-address-block">
+                <p>Avenida da Liberdade s/n</p>
+                <p>Bairro: Praia dos Anjos</p>
+                <p>Horário de atendimento: 08:00 às 17:00</p>
+              </address>
+              <div class="footer-address-divider">
+                <h3>Administração</h3>
+                <address class="footer-address-block">
+                  <p>R. Walter Teixeira dos Santos, 118</p>
+                  <p>Bairro: Canaã</p>
+                </address>
+              </div>
+            </section>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="footer-credit">
+              Prefeitura Municipal de Arraial do Cabo / RJ
+            </p>
+            <p class="footer-credit">
+              Desenvolvido pela Subsecretaria de Ciência e Tecnologia
+            </p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <dialog
+      class="service-details-dialog"
+      id="serviceDetailsDialog"
+      aria-labelledby="serviceDetailsTitle"
+    >
+      <div class="service-details-header">
+        <h2 id="serviceDetailsTitle"></h2>
+        <button
+          class="service-details-close"
+          id="serviceDetailsClose"
+          type="button"
+          aria-label="Fechar detalhes"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="service-details-content" id="serviceDetailsContent"></div>
+    </dialog>
+
+    <!-- JavaScript leve para controle da navegação em telas de celular -->
+    <script src="js/servicos-presenciais-detalhes.js"></script>
+    <script src="js/servicos-preview.js?v=9"></script>
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const sidebar = document.getElementById("sidebar");
+      const autarquiasToggle = document.getElementById("autarquiasToggle");
+      const autarquiasDropdown = document.getElementById("autarquiasDropdown");
+      const acessoCidadaoToggle = document.getElementById("acessoCidadaoToggle");
+      const acessoCidadaoDropdown = document.getElementById(
+        "acessoCidadaoDropdown",
+      );
+      const dropdowns = [
+        { container: sidebar, toggle: menuToggle },
+        { container: autarquiasDropdown, toggle: autarquiasToggle },
+        { container: acessoCidadaoDropdown, toggle: acessoCidadaoToggle },
+      ];
+      const themeToggles = document.querySelectorAll(".theme-toggle");
+      const municipalLogos = document.querySelectorAll(".municipal-logo");
+      const contrastToggle = document.querySelector(".contrast-toggle");
+      window.addEventListener("pageshow", () => {
+        document
+          .querySelector(
+            ".home-services-grid .service-card-details-content > a:focus",
+          )
+          ?.blur();
+      });
+      document
+        .querySelectorAll(".home-services-grid > .service-card")
+        .forEach((card, index) => {
+          const title = card.querySelector("h3");
+          const details = card.querySelector(".service-card-details");
+          const description = details?.querySelector(
+            ".service-card-details-content > p",
+          );
+
+          if (
+            !title ||
+            !details ||
+            !description ||
+            !card.dataset.serviceCategory
+          ) {
+            throw new Error("Não foi possível inicializar um card de serviço.");
+          }
+
+          description.classList.add("service-card-summary");
+          description.textContent = description.textContent.trim();
+          card.insertBefore(description, details);
+
+          const toggle = document.createElement("button");
+          const detailsId = `service-card-details-${index + 1}`;
+          toggle.type = "button";
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-controls", detailsId);
+          details.id = detailsId;
+          details.inert = true;
+          details.setAttribute("aria-hidden", "true");
+          toggle.append(...title.childNodes);
+          title.append(toggle);
+
+          function setExpanded(isExpanded) {
+            card.classList.toggle("is-expanded", isExpanded);
+            toggle.setAttribute("aria-expanded", String(isExpanded));
+            details.inert = !isExpanded;
+            details.setAttribute("aria-hidden", String(!isExpanded));
+          }
+
+          card.addEventListener("click", (event) => {
+            if (
+              event.target instanceof Element &&
+              event.target.closest("a")
+            ) {
+              return;
+            }
+
+            setExpanded(!card.classList.contains("is-expanded"));
+          });
+
+          card.addEventListener("mouseleave", () => setExpanded(false));
+        });
+
+      const serviceCategoryButtons = [
+        ...document.querySelectorAll(".service-category-filter"),
+      ];
+      const serviceCategoryEmpty = document.getElementById(
+        "serviceCategoryEmpty",
+      );
+      const serviceDirectoryCount = document.getElementById(
+        "serviceDirectoryCount",
+      );
+      const serviceCards = [
+        ...document.querySelectorAll(".home-services-grid > .service-card"),
+      ];
+
+      if (
+        !serviceCategoryButtons.length ||
+        !serviceCategoryEmpty ||
+        !serviceDirectoryCount
+      ) {
+        throw new Error("Não foi possível inicializar os filtros de serviços.");
+      }
+
+      serviceDirectoryCount.textContent = `${serviceCards.length} serviços`;
+      serviceCategoryButtons.forEach((button) => {
+        const selectedCategory = button.dataset.serviceFilter;
+        if (!selectedCategory) {
+          throw new Error("Um filtro de serviços está sem categoria.");
+        }
+
+        button.addEventListener("click", () => {
+          let visibleServices = 0;
+          serviceCards.forEach((card) => {
+            const isVisible =
+              selectedCategory === "all" ||
+              card.dataset.serviceCategory === selectedCategory;
+
+            if (!isVisible && card.classList.contains("is-expanded")) {
+              card.querySelector("h3 button")?.click();
+            }
+
+            card.hidden = !isVisible;
+            if (isVisible) {
+              visibleServices += 1;
+            }
+          });
+
+          serviceCategoryButtons.forEach((filterButton) => {
+            filterButton.setAttribute(
+              "aria-pressed",
+              String(filterButton === button),
+            );
+          });
+          serviceDirectoryCount.textContent = `${visibleServices} ${
+            visibleServices === 1 ? "serviço" : "serviços"
+          }`;
+          serviceCategoryEmpty.hidden = visibleServices > 0;
+        });
+      });
+
+      let savedTheme = null;
+      let savedContrast = null;
+      try {
+        savedTheme = localStorage.getItem("portal-theme");
+        savedContrast = localStorage.getItem("portal-high-contrast");
+      } catch {}
+
+      function updateThemeToggles(isDark) {
+        themeToggles.forEach((toggle) => {
+          const targetTheme = toggle.dataset.theme;
+          const isActive = targetTheme
+            ? (targetTheme === "dark") === isDark
+            : isDark;
+          toggle.setAttribute("aria-pressed", String(isActive));
+          toggle.setAttribute(
+            "aria-label",
+            targetTheme
+              ? `Ativar tema ${targetTheme === "dark" ? "escuro" : "claro"}`
+              : `Ativar tema ${isDark ? "claro" : "escuro"}`,
+          );
+          const icon = toggle.querySelector(".theme-toggle-icon");
+          icon.className =
+            (targetTheme ? targetTheme === "light" : isDark)
+              ? "theme-toggle-icon fa-solid fa-sun"
+              : "theme-toggle-icon fa-solid fa-moon";
+          if (!targetTheme) {
+            toggle.querySelector(".theme-toggle-label").textContent = isDark
+              ? "Tema claro"
+              : "Tema escuro";
+          }
+        });
+      }
+
+      function setTheme(isDark) {
+        document.body.classList.toggle("dark-theme", isDark);
+        municipalLogos.forEach((logo) => {
+          logo.src = logo.dataset[isDark ? "darkSrc" : "lightSrc"];
+        });
+        updateThemeToggles(isDark);
+        try {
+          localStorage.setItem("portal-theme", isDark ? "dark" : "light");
+        } catch {}
+      }
+
+      setTheme(savedTheme === "dark");
+      themeToggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          setTheme(
+            toggle.dataset.theme
+              ? toggle.dataset.theme === "dark"
+              : !document.body.classList.contains("dark-theme"),
+          );
+        });
+      });
+
+      function setHighContrast(isEnabled) {
+        document.body.classList.toggle("high-contrast", isEnabled);
+        contrastToggle.setAttribute("aria-pressed", String(isEnabled));
+        try {
+          localStorage.setItem(
+            "portal-high-contrast",
+            isEnabled ? "enabled" : "disabled",
+          );
+        } catch {}
+      }
+
+      setHighContrast(savedContrast === "enabled");
+      contrastToggle.addEventListener("click", () => {
+        setHighContrast(!document.body.classList.contains("high-contrast"));
+      });
+
+      function setDropdownOpen(dropdown, isOpen) {
+        dropdown.container.classList.toggle("open", isOpen);
+        dropdown.toggle.setAttribute("aria-expanded", String(isOpen));
+      }
+
+      dropdowns.forEach((dropdown) => {
+        dropdown.toggle.addEventListener("click", () => {
+          const shouldOpen = !dropdown.container.classList.contains("open");
+          dropdowns.forEach((item) => setDropdownOpen(item, false));
+          setDropdownOpen(dropdown, shouldOpen);
+        });
+        dropdown.container.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () =>
+            setDropdownOpen(dropdown, false),
+          );
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        dropdowns.forEach((dropdown) => {
+          if (!dropdown.container.contains(event.target)) {
+            setDropdownOpen(dropdown, false);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          const openDropdown = dropdowns.find((dropdown) =>
+            dropdown.container.classList.contains("open"),
+          );
+          if (openDropdown) {
+            setDropdownOpen(openDropdown, false);
+            openDropdown.toggle.focus();
+          }
+        }
+      });
+
+    </script>
+  </body>
+</html>
+index.html
