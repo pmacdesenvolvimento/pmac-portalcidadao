@@ -224,7 +224,7 @@ const serviceLinks = new Map([
   ["CONSULTA PÚBLICA – PPA", "https://www.arraial.rj.gov.br/ppa"],
   [
     "CONTRACHEQUE ONLINE",
-    "https://arraial.egov.modernizacao.com.br/portal/openform.do?sys=PSP&action=openform&formID=8274",
+    "https://loginunico.arraial.rj.gov.br/loginunico/open.do?sys=SLU&sis=ecac",
   ],
   ["DESPESAS", "https://www.fipac.rj.gov.br/despesas_index"],
   ["DIÁRIO OFICIAL ELETÔNICO", "https://old.arraial.rj.gov.br/diarios_oficiais_web"],

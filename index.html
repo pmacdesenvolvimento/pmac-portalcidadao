@@ -17,24 +17,6 @@
       <!-- Fundo com imagem da cidade -->
       <div class="hero-bg"></div>
 
-      <!-- Cabeçalho Mobile (Exibido apenas em telas menores) -->
-      <header class="mobile-header">
-        <div class="mobile-actions">
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Ativar tema escuro"
-            aria-pressed="false"
-          >
-            <i
-              class="theme-toggle-icon fa-solid fa-moon"
-              aria-hidden="true"
-            ></i>
-            <span class="theme-toggle-label">Tema escuro</span>
-          </button>
-        </div>
-      </header>
-
       <main class="main-content">
         <section class="top-welcome" aria-label="Portal do Cidadão">
           <img
@@ -51,6 +33,69 @@
                 class="municipal-logo"
                 alt="Brasão da Prefeitura de Arraial do Cabo"
               />
+            </div>
+
+            <div
+              class="portal-tool portal-appearance welcome-appearance"
+              aria-label="Aparência"
+            >
+              <div
+                class="portal-appearance-controls"
+                role="group"
+                aria-label="Tema e contraste"
+              >
+                <button
+                  class="theme-toggle"
+                  data-theme="light"
+                  type="button"
+                  aria-label="Ativar tema claro"
+                  aria-pressed="false"
+                  title="Ativar tema claro"
+                >
+                  <i
+                    class="theme-toggle-icon fa-solid fa-sun"
+                    aria-hidden="true"
+                  ></i>
+                  <span class="theme-toggle-label">Claro</span>
+                </button>
+                <button
+                  class="theme-toggle"
+                  data-theme="dark"
+                  type="button"
+                  aria-label="Ativar tema escuro"
+                  aria-pressed="false"
+                  title="Ativar tema escuro"
+                >
+                  <i
+                    class="theme-toggle-icon fa-solid fa-moon"
+                    aria-hidden="true"
+                  ></i>
+                  <span class="theme-toggle-label">Escuro</span>
+                </button>
+                <button
+                  class="contrast-toggle"
+                  type="button"
+                  aria-label="Alto contraste"
+                  aria-pressed="false"
+                  title="Alternar alto contraste"
+                >
+                  <i
+                    class="fa-solid fa-circle-half-stroke"
+                    aria-hidden="true"
+                  ></i>
+                  <span>Contraste</span>
+                </button>
+                <button
+                  class="speech-toggle"
+                  type="button"
+                  aria-label="Deficiente Visual: ativar leitura por voz"
+                  aria-pressed="false"
+                  title="Ativar leitura por voz ao passar o cursor"
+                >
+                  <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+                  <span>Deficiente Visual</span>
+                </button>
+              </div>
             </div>
 
             <div class="banner-nav-dropdowns">
@@ -390,112 +435,9 @@
           </div>
         </section>
 
-        <div class="top-cards">
-          <section
-            class="welcome-card popular-services-card portal-dashboard-card"
-            aria-labelledby="popular-services-title"
-          >
-            <div class="portal-dashboard-heading">
-              <span class="portal-dashboard-icon" aria-hidden="true">
-                <i class="fa-solid fa-bolt"></i>
-              </span>
-              <div class="popular-services-copy">
-                <p class="popular-services-eyebrow">PORTAL DO CIDADÃO</p>
-                <h2 id="popular-services-title">Serviços mais acessados</h2>
-              </div>
-            </div>
-
-            <div class="portal-dashboard-tools">
-              <div class="portal-tool translation-card" aria-label="Idioma">
-                <span class="portal-tool-label">IDIOMA:</span>
-                <div class="gtranslate_wrapper"></div>
-                <script>
-                  window.gtranslateSettings = {
-                    default_language: "pt",
-                    native_language_names: true,
-                    detect_browser_language: true,
-                    languages: ["pt-br", "en", "es", "fr"],
-                    wrapper_selector: ".gtranslate_wrapper",
-                    alt_flags: { en: "usa" },
-                  };
-                </script>
-                <script
-                  src="https://cdn.gtranslate.net/widgets/latest/flags.js"
-                  defer
-                ></script>
-              </div>
-
-              <div class="portal-tool weather-card" aria-label="Previsão do tempo">
-                <i
-                  class="fa-solid fa-cloud-sun portal-tool-icon"
-                  aria-hidden="true"
-                ></i>
-                <div id="TT_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53">
-                  <a href="https://pt.tutiempo.net/arraial-do-cabo.html"
-                    >Tempo em Arraial do Cabo</a
-                  >
-                </div>
-                <script
-                  type="text/javascript"
-                  src="https://pt.tutiempo.net/s-widget/l_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53"
-                ></script>
-              </div>
-
-              <div class="portal-tool portal-appearance" aria-label="Aparência">
-                <div
-                  class="portal-appearance-controls"
-                  role="group"
-                  aria-label="Tema e contraste"
-                >
-                  <button
-                    class="theme-toggle"
-                    data-theme="light"
-                    type="button"
-                    aria-label="Ativar tema claro"
-                    aria-pressed="false"
-                    title="Ativar tema claro"
-                  >
-                    <i
-                      class="theme-toggle-icon fa-solid fa-sun"
-                      aria-hidden="true"
-                    ></i>
-                    <span class="theme-toggle-label">Claro</span>
-                  </button>
-                  <button
-                    class="theme-toggle"
-                    data-theme="dark"
-                    type="button"
-                    aria-label="Ativar tema escuro"
-                    aria-pressed="false"
-                    title="Ativar tema escuro"
-                  >
-                    <i
-                      class="theme-toggle-icon fa-solid fa-moon"
-                      aria-hidden="true"
-                    ></i>
-                    <span class="theme-toggle-label">Escuro</span>
-                  </button>
-                  <button
-                    class="contrast-toggle"
-                    type="button"
-                    aria-label="Alto contraste"
-                    aria-pressed="false"
-                    title="Alternar alto contraste"
-                  >
-                    <i
-                      class="fa-solid fa-circle-half-stroke"
-                      aria-hidden="true"
-                    ></i>
-                    <span>Contraste</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </section>
-        </div>
         <section
           class="service-directory"
+          id="service-directory"
           aria-labelledby="service-directory-title"
         >
           <div class="service-directory-heading">
@@ -509,91 +451,283 @@
               aria-live="polite"
             ></p>
           </div>
-          <div
-            class="service-category-filters"
-            role="group"
-            aria-label="Categorias de serviços"
-          >
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="all"
-              aria-pressed="true"
-            >Todos</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="atendimento"
-              aria-pressed="false"
-            >Atendimento ao cidadão</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="tributos"
-              aria-pressed="false"
-            >Fazenda e tributos</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="educacao"
-              aria-pressed="false"
-            >Educação</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="saude"
-              aria-pressed="false"
-            >Saúde</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="assistencia"
-              aria-pressed="false"
-            >Assistência social e cidadania</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="servidor"
-              aria-pressed="false"
-            >Servidor público</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="governo"
-              aria-pressed="false"
-            >Governo e transparência</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="mobilidade"
-              aria-pressed="false"
-            >Mobilidade e transporte</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="urbanismo"
-              aria-pressed="false"
-            >Obras, urbanismo e habitação</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="servicos-urbanos"
-              aria-pressed="false"
-            >Meio ambiente e serviços urbanos</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="cultura-lazer"
-              aria-pressed="false"
-            >Cultura, esporte e lazer</button>
-            <button
-              class="service-category-filter"
-              type="button"
-              data-service-filter="emprego-renda"
-              aria-pressed="false"
-            >Emprego, renda e desenvolvimento econômico</button>
-          </div>
         </section>
+
+        <nav class="portal-category-grid" aria-label="Atalhos por assunto">
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="tributos"
+          >
+            <span class="portal-category-icon category-tax" aria-hidden="true">
+              <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="portal-category-name">Receitas<br />e Tributos</span>
+            <span class="portal-category-description">IPTU, ITBI, taxas</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="atendimento"
+          >
+            <span
+              class="portal-category-icon category-process"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-file-lines"></i>
+            </span>
+            <span class="portal-category-name">Protocolos<br />e Processos</span>
+            <span class="portal-category-description">Protocolo web, consulta</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="saude"
+          >
+            <span class="portal-category-icon category-health" aria-hidden="true">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </span>
+            <span class="portal-category-name">Saúde</span>
+            <span class="portal-category-description">Unidades e atendimentos</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="educacao"
+          >
+            <span
+              class="portal-category-icon category-education"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <span class="portal-category-name">Educação</span>
+            <span class="portal-category-description">Matrículas e escolas</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="assistencia"
+          >
+            <span class="portal-category-icon category-social" aria-hidden="true">
+              <i class="fa-solid fa-people-group"></i>
+            </span>
+            <span class="portal-category-name">Assistência<br />Social</span>
+            <span class="portal-category-description">CRAS e cidadania</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="cultura-lazer"
+          >
+            <span
+              class="portal-category-icon category-tourism"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-umbrella-beach"></i>
+            </span>
+            <span class="portal-category-name">Turismo, Cultura<br />e Esporte</span>
+            <span class="portal-category-description">Eventos e espaços públicos</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="servidor"
+          >
+            <span class="portal-category-icon category-staff" aria-hidden="true">
+              <i class="fa-solid fa-briefcase"></i>
+            </span>
+            <span class="portal-category-name">Servidor<br />Público</span>
+            <span class="portal-category-description">Contracheque e RH</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="governo"
+          >
+            <span
+              class="portal-category-icon category-transparency"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-chart-column"></i>
+            </span>
+            <span class="portal-category-name">Transparência<br />e Ouvidoria</span>
+            <span class="portal-category-description">Dados e manifestações</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-modality-shortcut="ON-LINE"
+            aria-pressed="false"
+          >
+            <span class="portal-category-icon category-online" aria-hidden="true">
+              <i class="fa-solid fa-laptop"></i>
+            </span>
+            <span class="portal-category-name">Serviços On-line</span>
+            <span class="portal-category-description">Serviços pela internet</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-modality-shortcut="PRESENCIAL"
+            aria-pressed="false"
+          >
+            <span
+              class="portal-category-icon category-presential"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-building"></i>
+            </span>
+            <span class="portal-category-name">Serviços Presenciais</span>
+            <span class="portal-category-description">Atendimento nas unidades</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="all"
+          >
+            <span class="portal-category-icon category-all" aria-hidden="true">
+              <i class="fa-solid fa-list-check"></i>
+            </span>
+            <span class="portal-category-name">Todos Serviços</span>
+            <span class="portal-category-description">Acesse o catálogo completo</span>
+          </button>
+        </nav>
+
+        <section class="portal-dashboard-grid" aria-label="Destaques do portal">
+          <section
+            class="portal-panel popular-links-panel"
+            aria-labelledby="popular-services-title"
+          >
+            <div class="portal-panel-heading">
+              <h2 id="popular-services-title">Mais acessados</h2>
+            </div>
+            <ol class="popular-links-list">
+              <li>
+                <a
+                  href="https://arraial.egov.modernizacao.com.br/ecac/form.jsp?sys=TTB&amp;action=openform&amp;formID=500000111&amp;filter=ACE_Parametro_Tipo_Acesso.Codigo=1"
+                  >2ª via do IPTU</a
+                >
+              </li>
+              <li>
+                <a href="https://www.arraial.rj.gov.br/diariooficial"
+                  >Diário Oficial</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://loginunico.arraial.rj.gov.br/loginunico/open.do?sys=SLU&amp;sis=ecac"
+                  >Contracheque do servidor</a
+                >
+              </li>
+              <li>
+                <a href="https://transparencia.arraial.modernizacao.com.br/"
+                  >Portal da Transparência</a
+                >
+              </li>
+              <li>
+                <a href="https://www.arraial.rj.gov.br/onibus-municipal"
+                  >Ônibus municipal</a
+                >
+              </li>
+              <li>
+                <a href="https://www.arraial.rj.gov.br/portalcidadao#governo-digital"
+                  >Governo Digital</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://falabr.cgu.gov.br/web/login?tipo=8&amp;redirect=/manifestacao/criar?tipo=8"
+                  >e-SIC</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://lagos.sei.rj.gov.br/sip/login.php?sigla_orgao_sistema=LAGOS&amp;sigla_sistema=SEI&amp;infra_url=L3NlaS8="
+                  >SEI 5.0</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://admac.modernizacao.com.br/adm/form.jsp?sys=PRO&amp;action=openform&amp;formID=7175"
+                  >Protocolo cidadão</a
+                >
+              </li>
+            </ol>
+          </section>
+
+          <a
+            class="tourism-feature"
+            href="https://www.arraial.rj.gov.br/onibus-municipal"
+            aria-label="Confira os horários e as linhas dos ônibus municipais"
+          >
+            <img
+              class="tourism-feature-image"
+              src="img/onibus-municipal-banner.png"
+              alt="Novas linhas dos ônibus municipais. Tarifa de R$ 2,00. Consulte os horários."
+            />
+          </a>
+
+          <section
+            class="portal-panel directions-panel"
+            aria-labelledby="directions-title"
+          >
+            <div class="portal-panel-heading">
+              <h2 id="directions-title">Como chegar</h2>
+            </div>
+            <div class="directions-map">
+              <iframe
+                title="Mapa de Arraial do Cabo"
+                src="https://www.google.com/maps?q=-22.9667,-42.0267&amp;z=15&amp;output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <a
+              class="directions-map-link"
+              href="https://www.google.com/maps/search/?api=1&amp;query=-22.9667%2C-42.0267"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir mapa
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </section>
+
+          <section
+            class="weather-feature"
+            aria-label="Previsão do tempo em Arraial do Cabo"
+          >
+            <div class="weather-feature-content">
+              <p class="weather-location">Previsão do Tempo - Arraial do Cabo</p>
+              <i class="fa-solid fa-cloud-sun weather-feature-icon" aria-hidden="true"></i>
+              <div id="TT_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53">
+                <a href="https://pt.tutiempo.net/arraial-do-cabo.html">Tempo em Arraial do Cabo</a>
+              </div>
+              <a
+                class="weather-feature-link"
+                href="https://pt.tutiempo.net/arraial-do-cabo.html"
+              >
+                Ver previsão completa
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <a
+              class="weather-photo-credit"
+              href="https://www.pexels.com/pt-br/@2161298550/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Foto: Kaio Fonseca Mazão / Pexels
+            </a>
+            <script
+              type="text/javascript"
+              src="https://pt.tutiempo.net/s-widget/l_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53"
+            ></script>
+          </section>
+        </section>
+
         <!-- VLibras -->
         <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
@@ -664,7 +798,7 @@
                   Municipal de Arraial do Cabo.
                 </p>
                 <a
-                  href="https://arraial.egov.modernizacao.com.br/portal/openform.do?sys=PSP&action=openform&formID=8274"
+                  href="https://loginunico.arraial.rj.gov.br/loginunico/open.do?sys=SLU&amp;sis=ecac"
                   >Acessar</a
                 >
               </div>
@@ -1115,6 +1249,12 @@
       const themeToggles = document.querySelectorAll(".theme-toggle");
       const municipalLogos = document.querySelectorAll(".municipal-logo");
       const contrastToggle = document.querySelector(".contrast-toggle");
+      const speechToggle = document.querySelector(".speech-toggle");
+
+      if (!speechToggle) {
+        throw new Error("Não foi possível inicializar a leitura por voz.");
+      }
+
       window.addEventListener("pageshow", () => {
         document
           .querySelector(
@@ -1176,8 +1316,8 @@
           card.addEventListener("mouseleave", () => setExpanded(false));
         });
 
-      const serviceCategoryButtons = [
-        ...document.querySelectorAll(".service-category-filter"),
+      const serviceModalityShortcuts = [
+        ...document.querySelectorAll("[data-service-modality-shortcut]"),
       ];
       const serviceCategoryEmpty = document.getElementById(
         "serviceCategoryEmpty",
@@ -1190,7 +1330,7 @@
       ];
 
       if (
-        !serviceCategoryButtons.length ||
+        !serviceModalityShortcuts.length ||
         !serviceCategoryEmpty ||
         !serviceDirectoryCount
       ) {
@@ -1198,41 +1338,80 @@
       }
 
       serviceDirectoryCount.textContent = `${serviceCards.length} serviços`;
-      serviceCategoryButtons.forEach((button) => {
-        const selectedCategory = button.dataset.serviceFilter;
-        if (!selectedCategory) {
-          throw new Error("Um filtro de serviços está sem categoria.");
+      let selectedServiceCategory = "all";
+      let selectedServiceModality = "all";
+
+      function updateServiceFilters() {
+        let visibleServices = 0;
+        serviceCards.forEach((card) => {
+          const matchesCategory =
+            selectedServiceCategory === "all" ||
+            card.dataset.serviceCategory === selectedServiceCategory;
+          const matchesModality =
+            selectedServiceModality === "all" ||
+            card.dataset.modality === selectedServiceModality;
+          const isVisible = matchesCategory && matchesModality;
+
+          if (!isVisible && card.classList.contains("is-expanded")) {
+            card.querySelector("h3 button")?.click();
+          }
+
+          card.hidden = !isVisible;
+          if (isVisible) {
+            visibleServices += 1;
+          }
+        });
+
+        serviceModalityShortcuts.forEach((shortcut) => {
+          shortcut.setAttribute(
+            "aria-pressed",
+            String(
+              shortcut.dataset.serviceModalityShortcut ===
+                selectedServiceModality,
+            ),
+          );
+        });
+        serviceDirectoryCount.textContent = `${visibleServices} ${
+          visibleServices === 1 ? "serviço" : "serviços"
+        }`;
+        serviceCategoryEmpty.hidden = visibleServices > 0;
+      }
+
+      serviceModalityShortcuts.forEach((shortcut) => {
+        const modality = shortcut.dataset.serviceModalityShortcut;
+        if (modality !== "ON-LINE" && modality !== "PRESENCIAL") {
+          throw new Error("Um atalho está sem modalidade de serviço válida.");
         }
 
-        button.addEventListener("click", () => {
-          let visibleServices = 0;
-          serviceCards.forEach((card) => {
-            const isVisible =
-              selectedCategory === "all" ||
-              card.dataset.serviceCategory === selectedCategory;
-
-            if (!isVisible && card.classList.contains("is-expanded")) {
-              card.querySelector("h3 button")?.click();
-            }
-
-            card.hidden = !isVisible;
-            if (isVisible) {
-              visibleServices += 1;
-            }
-          });
-
-          serviceCategoryButtons.forEach((filterButton) => {
-            filterButton.setAttribute(
-              "aria-pressed",
-              String(filterButton === button),
-            );
-          });
-          serviceDirectoryCount.textContent = `${visibleServices} ${
-            visibleServices === 1 ? "serviço" : "serviços"
-          }`;
-          serviceCategoryEmpty.hidden = visibleServices > 0;
+        shortcut.addEventListener("click", () => {
+          selectedServiceCategory = "all";
+          selectedServiceModality = modality;
+          updateServiceFilters();
+          document
+            .getElementById("homeServicesGrid")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
+      document.querySelectorAll("[data-service-shortcut]").forEach((shortcut) => {
+        const selectedCategory = shortcut.dataset.serviceShortcut;
+        if (!selectedCategory) {
+          throw new Error("Um atalho de categoria está sem categoria.");
+        }
+
+        shortcut.addEventListener("click", () => {
+          if (selectedCategory === "all") {
+            selectedServiceCategory = "all";
+            selectedServiceModality = "all";
+          } else {
+            selectedServiceCategory = selectedCategory;
+          }
+          updateServiceFilters();
+          document
+            .getElementById("homeServicesGrid")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+      updateServiceFilters();
 
       let savedTheme = null;
       let savedContrast = null;
@@ -1304,6 +1483,118 @@
       contrastToggle.addEventListener("click", () => {
         setHighContrast(!document.body.classList.contains("high-contrast"));
       });
+
+      const speakableSelector =
+        "h1, h2, h3, h4, h5, h6, p, a, button, label, li, td, th, " +
+        "summary, strong, small, span, [role='button'], [aria-label], " +
+        "img[alt], input, select, textarea";
+      const speechSynthesisApi = window.speechSynthesis;
+
+      if (
+        !speechSynthesisApi ||
+        typeof window.SpeechSynthesisUtterance !== "function"
+      ) {
+        speechToggle.disabled = true;
+        speechToggle.title =
+          "A leitura por voz não está disponível neste navegador.";
+      } else {
+        let lastSpokenText = "";
+        let lastSpokenTarget = null;
+
+        function getSpeakableText(target) {
+          return (
+            target.getAttribute("aria-label") ||
+            target.getAttribute("alt") ||
+            target.getAttribute("title") ||
+            ("value" in target ? target.value : "") ||
+            target.innerText ||
+            ""
+          )
+            .replace(/\s+/g, " ")
+            .trim();
+        }
+
+        function readHoveredContent(event) {
+          if (speechToggle.getAttribute("aria-pressed") !== "true") {
+            return;
+          }
+
+          if (!(event.target instanceof Element)) {
+            return;
+          }
+
+          let target = event.target.closest(speakableSelector);
+          let text = target ? getSpeakableText(target) : "";
+
+          while (target && !text) {
+            target = target.parentElement?.closest(speakableSelector) ?? null;
+            text = target ? getSpeakableText(target) : "";
+          }
+
+          if (
+            !target ||
+            target.closest(".portal-appearance-controls") ||
+            !text ||
+            text === lastSpokenText
+          ) {
+            return;
+          }
+
+          lastSpokenText = text;
+          lastSpokenTarget = target;
+          speechSynthesisApi.cancel();
+          const utterance = new window.SpeechSynthesisUtterance(text);
+          utterance.lang = "pt-BR";
+          speechSynthesisApi.speak(utterance);
+        }
+
+        speechToggle.addEventListener("click", () => {
+          const isEnabled = speechToggle.getAttribute("aria-pressed") !== "true";
+          speechToggle.setAttribute("aria-pressed", String(isEnabled));
+          speechToggle.setAttribute(
+            "aria-label",
+            `Deficiente Visual: ${isEnabled ? "desativar" : "ativar"} leitura por voz`,
+          );
+          speechToggle.title = isEnabled
+            ? "Desativar leitura por voz ao passar o cursor"
+            : "Ativar leitura por voz ao passar o cursor";
+
+          if (isEnabled) {
+            const instruction =
+              "Leitura por voz ativada. Passe o cursor sobre o conteúdo para ouvir.";
+            lastSpokenText = instruction;
+            lastSpokenTarget = null;
+            speechSynthesisApi.cancel();
+            const utterance = new window.SpeechSynthesisUtterance(instruction);
+            utterance.lang = "pt-BR";
+            speechSynthesisApi.speak(utterance);
+          } else {
+            speechSynthesisApi.cancel();
+            lastSpokenText = "";
+            lastSpokenTarget = null;
+          }
+        });
+
+        document.addEventListener("pointerover", readHoveredContent);
+        document.addEventListener("focusin", readHoveredContent);
+        document.addEventListener("pointerout", (event) => {
+          if (!(event.target instanceof Element) || !lastSpokenTarget) {
+            return;
+          }
+
+          const target = event.target.closest(speakableSelector);
+          const relatedTarget =
+            event.relatedTarget instanceof Node ? event.relatedTarget : null;
+
+          if (
+            target === lastSpokenTarget &&
+            !target.contains(relatedTarget)
+          ) {
+            lastSpokenText = "";
+            lastSpokenTarget = null;
+          }
+        });
+      }
 
       function setDropdownOpen(dropdown, isOpen) {
         dropdown.container.classList.toggle("open", isOpen);
