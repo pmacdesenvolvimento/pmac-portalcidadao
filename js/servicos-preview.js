@@ -680,9 +680,8 @@ function createHomeServiceCard({ modality, name }, serviceLink) {
 
 const homeServiceGrid = document.getElementById("homeServicesGrid");
 const homeServiceEmpty = document.getElementById("serviceCategoryEmpty");
-const homeServiceCount = document.getElementById("serviceDirectoryCount");
 
-if (!homeServiceGrid || !homeServiceEmpty || !homeServiceCount) {
+if (!homeServiceGrid || !homeServiceEmpty) {
   throw new Error("Não foi possível inicializar o catálogo de serviços.");
 }
 
@@ -712,5 +711,4 @@ sortedHomeServices.forEach(({ modality, name }) => {
   );
 });
 
-homeServiceCount.textContent = `${serviceCatalogData.length} serviços`;
 homeServiceGrid.replaceChildren(homeServicesFragment, homeServiceEmpty);

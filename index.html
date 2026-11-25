@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal Cidadão</title>
-    <link rel="stylesheet" href="css/style.css?v=45" />
+    <link rel="stylesheet" href="css/style.css?v=54" />
     <!-- Ícones do Font Awesome -->
     <link
       rel="stylesheet"
@@ -36,14 +36,12 @@
             </div>
 
             <div
-              class="portal-tool portal-appearance welcome-appearance"
-              aria-label="Aparência"
+              class="portal-appearance-controls service-directory-appearance-controls"
+              role="group"
+              aria-label="Controles de aparência"
             >
-              <div
-                class="portal-appearance-controls"
-                role="group"
-                aria-label="Tema e contraste"
-              >
+              <div class="service-directory-appearance-control">
+                <span class="service-directory-control-label">APARÊNCIA</span>
                 <button
                   class="theme-toggle"
                   data-theme="light"
@@ -58,6 +56,8 @@
                   ></i>
                   <span class="theme-toggle-label">Claro</span>
                 </button>
+              </div>
+              <div class="service-directory-appearance-control">
                 <button
                   class="theme-toggle"
                   data-theme="dark"
@@ -72,6 +72,8 @@
                   ></i>
                   <span class="theme-toggle-label">Escuro</span>
                 </button>
+              </div>
+              <div class="service-directory-appearance-control">
                 <button
                   class="contrast-toggle"
                   type="button"
@@ -85,23 +87,26 @@
                   ></i>
                   <span>Contraste</span>
                 </button>
+              </div>
+              <div class="service-directory-appearance-control service-directory-accessibility-control">
+                <span class="service-directory-control-label">ACESSIBILIDADE</span>
                 <button
                   class="speech-toggle"
                   type="button"
-                  aria-label="Leitor de Tela: ativar leitura por voz"
+                  aria-label="Assistente de Tela: ativar leitura por voz"
                   aria-pressed="false"
                   title="Ativar leitura por voz ao passar o cursor"
                 >
                   <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-                  <span>Leitor de Tela</span>
+                  <span>Assistente de Tela</span>
                 </button>
+              </div>
                 <span
                   class="sr-only speech-status"
                   role="status"
                   aria-live="polite"
                   aria-atomic="true"
                 ></span>
-              </div>
             </div>
 
             <div class="banner-nav-dropdowns">
@@ -431,15 +436,46 @@
           aria-labelledby="service-directory-title"
         >
           <div class="service-directory-heading">
-            <div>
-              <p class="service-directory-eyebrow">CATÁLOGO DE SERVIÇOS</p>
-              <h2 id="service-directory-title">Explore por categoria</h2>
+            <div class="service-directory-heading-copy">
+              <div>
+                <p class="service-directory-eyebrow">CATÁLOGO DE SERVIÇOS</p>
+                <h2 id="service-directory-title">Explore por categoria</h2>
+              </div>
             </div>
-            <p
-              class="service-directory-count"
-              id="serviceDirectoryCount"
-              aria-live="polite"
-            ></p>
+            <div class="service-directory-actions">
+              <div class="service-directory-search-control">
+                <form
+                  class="service-directory-search-card"
+                  id="serviceDirectorySearchForm"
+                  role="search"
+                  aria-label="Pesquisar serviços"
+                >
+                  <div class="service-directory-search-controls">
+                    <div class="service-catalog-search">
+                      <input
+                        id="serviceDirectorySearch"
+                        name="q"
+                        type="search"
+                        placeholder="O que você procura? Ex.: IPTU, saúde, matrícula"
+                        autocomplete="off"
+                        aria-label="Pesquisar serviços"
+                        aria-controls="homeServicesGrid"
+                      />
+                    </div>
+                    <button
+                      class="service-directory-search-button"
+                      type="submit"
+                      aria-label="Buscar serviços"
+                      title="Buscar serviços"
+                    >
+                      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                      <span class="sr-only">Buscar</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="service-directory-quick-links"></div>
+            </div>
           </div>
         </section>
 
@@ -1273,7 +1309,7 @@
 
     <!-- JavaScript leve para controle da navegação em telas de celular -->
     <script src="js/servicos-presenciais-detalhes.js"></script>
-    <script src="js/servicos-preview.js?v=10"></script>
+    <script src="js/servicos-preview.js?v=11"></script>
     <script>
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
@@ -1282,6 +1318,34 @@
       const acessoCidadaoToggle = document.getElementById("acessoCidadaoToggle");
       const acessoCidadaoDropdown = document.getElementById(
         "acessoCidadaoDropdown",
+      );
+      const bannerNavDropdowns = document.querySelector(
+        ".banner-nav-dropdowns",
+      );
+      const serviceDirectoryAppearanceControls = document.querySelector(
+        ".service-directory-appearance-controls",
+      );
+      const serviceDirectoryQuickLinks = document.querySelector(
+        ".service-directory-quick-links",
+      );
+      if (
+        !sidebar ||
+        !autarquiasDropdown ||
+        !acessoCidadaoDropdown ||
+        !bannerNavDropdowns ||
+        !serviceDirectoryAppearanceControls ||
+        !serviceDirectoryQuickLinks
+      ) {
+        throw new Error("Não foi possível inicializar a navegação principal.");
+      }
+      bannerNavDropdowns.replaceChildren(
+        autarquiasDropdown,
+        acessoCidadaoDropdown,
+        sidebar,
+      );
+      serviceDirectoryQuickLinks.append(
+        bannerNavDropdowns,
+        serviceDirectoryAppearanceControls,
       );
       const dropdowns = [
         { container: sidebar, toggle: menuToggle },
@@ -1364,22 +1428,31 @@
       const serviceCategoryEmpty = document.getElementById(
         "serviceCategoryEmpty",
       );
-      const serviceDirectoryCount = document.getElementById(
-        "serviceDirectoryCount",
+      const serviceDirectorySearchForm = document.getElementById(
+        "serviceDirectorySearchForm",
       );
+      const serviceDirectorySearchInput = document.getElementById(
+        "serviceDirectorySearch",
+      );
+      const homeServicesGrid = document.getElementById("homeServicesGrid");
       const serviceCards = [
         ...document.querySelectorAll(".home-services-grid > .service-card"),
       ];
 
       if (
         !serviceModalityShortcuts.length ||
-        !serviceCategoryEmpty ||
-        !serviceDirectoryCount
+        !serviceCategoryEmpty
       ) {
         throw new Error("Não foi possível inicializar os filtros de serviços.");
       }
+      if (
+        !serviceDirectorySearchForm ||
+        !serviceDirectorySearchInput ||
+        !homeServicesGrid
+      ) {
+        throw new Error("Não foi possível inicializar a busca de serviços.");
+      }
 
-      serviceDirectoryCount.textContent = `${serviceCards.length} serviços`;
       document.querySelectorAll(".portal-category-card").forEach((card) => {
         let categoryServiceCount;
         if (card.dataset.serviceShortcut === "all") {
@@ -1431,6 +1504,33 @@
         card.append(countBadge, accessibleCount);
       });
 
+      function normalizeServiceSearchText(text) {
+        return text
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+      }
+
+      const serviceSearchIndex = new Map(
+        serviceCards.map((card) => {
+          const descriptions = [
+            ...card.querySelectorAll(
+              ".service-card-summary, .service-card-details-content > p",
+            ),
+          ].map((paragraph) => paragraph.textContent);
+          const searchableText = [
+            card.querySelector("h3")?.textContent,
+            ...descriptions,
+            card.dataset.modality,
+            card.dataset.serviceCategory,
+          ]
+            .filter(Boolean)
+            .join(" ");
+          return [card, normalizeServiceSearchText(searchableText)];
+        }),
+      );
+
+      let selectedServiceSearchTerms = [];
       let selectedServiceCategory = "all";
       let selectedServiceModality = "all";
 
@@ -1443,7 +1543,12 @@
           const matchesModality =
             selectedServiceModality === "all" ||
             card.dataset.modality === selectedServiceModality;
-          const isVisible = matchesCategory && matchesModality;
+          const searchableText = serviceSearchIndex.get(card) || "";
+          const matchesSearch = selectedServiceSearchTerms.every((term) =>
+            searchableText.includes(term),
+          );
+          const isVisible =
+            matchesCategory && matchesModality && matchesSearch;
 
           if (!isVisible && card.classList.contains("is-expanded")) {
             card.querySelector("h3 button")?.click();
@@ -1464,11 +1569,36 @@
             ),
           );
         });
-        serviceDirectoryCount.textContent = `${visibleServices} ${
-          visibleServices === 1 ? "serviço" : "serviços"
-        }`;
+        serviceCategoryEmpty.textContent = selectedServiceSearchTerms.length
+          ? "Nenhum serviço encontrado para essa pesquisa."
+          : "Ainda não há serviços cadastrados nesta categoria.";
         serviceCategoryEmpty.hidden = visibleServices > 0;
       }
+
+      serviceDirectorySearchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        selectedServiceSearchTerms = normalizeServiceSearchText(
+          serviceDirectorySearchInput.value,
+        )
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean);
+        selectedServiceCategory = "all";
+        selectedServiceModality = "all";
+        updateServiceFilters();
+        homeServicesGrid.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+      serviceDirectorySearchInput.addEventListener("input", () => {
+        if (serviceDirectorySearchInput.value.trim()) {
+          return;
+        }
+
+        selectedServiceSearchTerms = [];
+        updateServiceFilters();
+      });
 
       serviceModalityShortcuts.forEach((shortcut) => {
         const modality = shortcut.dataset.serviceModalityShortcut;
@@ -1477,12 +1607,15 @@
         }
 
         shortcut.addEventListener("click", () => {
+          serviceDirectorySearchInput.value = "";
+          selectedServiceSearchTerms = [];
           selectedServiceCategory = "all";
           selectedServiceModality = modality;
           updateServiceFilters();
-          document
-            .getElementById("homeServicesGrid")
-            .scrollIntoView({ behavior: "smooth", block: "start" });
+          homeServicesGrid.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         });
       });
       document.querySelectorAll("[data-service-shortcut]").forEach((shortcut) => {
@@ -1492,12 +1625,15 @@
         }
 
         shortcut.addEventListener("click", () => {
+          serviceDirectorySearchInput.value = "";
+          selectedServiceSearchTerms = [];
           selectedServiceCategory = selectedCategory;
           selectedServiceModality = "all";
           updateServiceFilters();
-          document
-            .getElementById("homeServicesGrid")
-            .scrollIntoView({ behavior: "smooth", block: "start" });
+          homeServicesGrid.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         });
       });
       updateServiceFilters();
@@ -1586,7 +1722,7 @@
         speechToggle.disabled = true;
         speechToggle.setAttribute(
           "aria-label",
-          "Leitura por voz indisponível: abra o portal por HTTP ou HTTPS",
+          "Assistente de Tela indisponível: abra o portal por HTTP ou HTTPS",
         );
         speechToggle.title =
           "A leitura por voz exige que o portal seja aberto por HTTP ou HTTPS, não diretamente pelo arquivo.";
@@ -1635,7 +1771,7 @@
           speechToggle.setAttribute("aria-pressed", "false");
           speechToggle.setAttribute(
             "aria-label",
-            "Leitor de Tela: leitura por voz indisponível",
+            "Assistente de Tela: leitura por voz indisponível",
           );
           speechToggle.title =
             "Não foi possível gerar o áudio da leitura por voz.";
@@ -1907,7 +2043,7 @@
           speechToggle.setAttribute("aria-pressed", String(isEnabled));
           speechToggle.setAttribute(
             "aria-label",
-            `Leitor de Tela: ${isEnabled ? "desativar" : "ativar"} leitura por voz`,
+            `Assistente de Tela: ${isEnabled ? "desativar" : "ativar"} leitura por voz`,
           );
           speechToggle.title = isEnabled
             ? "Desativar leitura por voz ao passar o cursor"
