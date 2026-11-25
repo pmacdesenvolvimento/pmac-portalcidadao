@@ -21,7 +21,7 @@
         <section class="top-welcome" aria-label="Portal do Cidadão">
           <img
             src="img/portalcidadao.png"
-            alt="Imagem de Arraial do Cabo"
+            alt="Imagem de abertura do site. Nela tem uma mulher com cabelos em tons de loiros mesclados, sorrindo como se estivesse olhando para a câmera e segurando um celular nas mãos. Ao lado está escrito: Portal Cidadão. Sua vida mais fácil. Serviços a um clique!"
             class="welcome-image"
           />
           <div class="page-banner">
@@ -88,13 +88,19 @@
                 <button
                   class="speech-toggle"
                   type="button"
-                  aria-label="Deficiente Visual: ativar leitura por voz"
+                  aria-label="Leitor de Tela: ativar leitura por voz"
                   aria-pressed="false"
                   title="Ativar leitura por voz ao passar o cursor"
                 >
                   <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-                  <span>Deficiente Visual</span>
+                  <span>Leitor de Tela</span>
                 </button>
+                <span
+                  class="sr-only speech-status"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                ></span>
               </div>
             </div>
 
@@ -107,96 +113,24 @@
                   aria-expanded="false"
                   aria-controls="menuPanel"
                 >
-                  <i
-                    class="fa-solid fa-clipboard-list nav-dropdown-icon"
+                  <svg
+                    class="service-category-flag"
+                    viewBox="0 0 30 20"
                     aria-hidden="true"
-                  ></i>
-                  <span>SERVIÇOS</span>
+                  >
+                    <rect width="30" height="20" rx="1.5" fill="#009b3a" />
+                    <path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00" />
+                    <circle cx="15" cy="10" r="4.8" fill="#002776" />
+                  </svg>
+                  <span>ACESSE GOV.BR</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
 
-                <div class="nav-dropdown-panel mega-menu-panel" id="menuPanel">
-                  <label class="service-catalog-search service-offerings-search">
-                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                    <span class="sr-only">Buscar serviços on-line e presenciais</span>
-                    <input
-                      id="serviceCatalogSearch"
-                      type="search"
-                      placeholder="Ex.: IPTU, saúde, escola..."
-                      autocomplete="off"
-                    />
-                  </label>
-                  <div class="mega-menu-columns service-offerings-columns">
-                    <section
-                      class="service-catalog-panel service-offerings-catalog"
-                      id="onlineServicesPanel"
-                      data-modality="ON-LINE"
-                    >
-                      <div class="service-catalog-header">
-                        <div>
-                          <h3 class="mega-menu-title service-category-title">
-                            <img
-                              src="img/brasao-arraial-azul.png"
-                              data-light-src="img/brasao-arraial-azul.png"
-                              data-dark-src="img/brasao-arraial-branco.png"
-                              class="municipal-logo service-category-emblem"
-                              alt=""
-                            />
-                            <span>SERVIÇOS ON-LINE</span>
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p
-                        class="service-catalog-count"
-                        id="onlineServicesCount"
-                        aria-live="polite"
-                      ></p>
-                      <ul
-                        class="service-catalog-list"
-                        id="onlineServicesList"
-                        aria-label="Serviços on-line disponíveis na prévia"
-                      ></ul>
-                      <p class="service-catalog-empty" id="onlineServicesEmpty" hidden>
-                        Nenhum serviço on-line encontrado para essa busca.
-                      </p>
-                    </section>
-
-                    <section
-                      class="service-catalog-panel service-offerings-catalog"
-                      id="inPersonServicesPanel"
-                      data-modality="PRESENCIAL"
-                    >
-                      <div class="service-catalog-header">
-                        <div>
-                          <h3 class="mega-menu-title service-category-title">
-                            <img
-                              src="img/brasao-arraial-azul.png"
-                              data-light-src="img/brasao-arraial-azul.png"
-                              data-dark-src="img/brasao-arraial-branco.png"
-                              class="municipal-logo service-category-emblem"
-                              alt=""
-                            />
-                            <span>SERVIÇOS PRESENCIAIS</span>
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p
-                        class="service-catalog-count"
-                        id="inPersonServicesCount"
-                        aria-live="polite"
-                      ></p>
-                      <ul
-                        class="service-catalog-list"
-                        id="inPersonServicesList"
-                        aria-label="Serviços presenciais disponíveis na prévia"
-                      ></ul>
-                      <p class="service-catalog-empty" id="inPersonServicesEmpty" hidden>
-                        Nenhum serviço presencial encontrado para essa busca.
-                      </p>
-                    </section>
-
+                <div
+                  class="nav-dropdown-panel mega-menu-panel institution-menu-panel"
+                  id="menuPanel"
+                >
+                  <div class="mega-menu-columns">
                     <section class="mega-menu-column gov-services-category">
                       <div class="service-catalog-header">
                         <h3 class="mega-menu-title service-category-title">
@@ -301,10 +235,32 @@
                   aria-expanded="false"
                   aria-controls="autarquiasMenu"
                 >
-                  <i
-                    class="fa-solid fa-building-columns nav-dropdown-icon"
+                  <svg
+                    class="nav-dropdown-illustration"
+                    viewBox="0 0 32 24"
                     aria-hidden="true"
-                  ></i>
+                  >
+                    <path
+                      d="M2 8 16 1l14 7H2Z"
+                      fill="#f59e0b"
+                      stroke="#78350f"
+                      stroke-width="1.2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M4 9h24v11H4z"
+                      fill="#0e7490"
+                      stroke="#083344"
+                      stroke-width="1"
+                    />
+                    <path d="M8 11v7m5-7v7m6-7v7m5-7v7" stroke="#fff" stroke-width="2.2" />
+                    <path
+                      d="M2 20h28v3H2z"
+                      fill="#c2410c"
+                      stroke="#7c2d12"
+                      stroke-width="1"
+                    />
+                  </svg>
                   <span>AUTARQUIAS</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
@@ -355,11 +311,45 @@
                   aria-expanded="false"
                   aria-controls="acessoCidadaoMenu"
                 >
-                  <i
-                    class="fa-solid fa-user nav-dropdown-icon"
+                  <svg
+                    class="nav-dropdown-illustration"
+                    viewBox="0 0 32 24"
                     aria-hidden="true"
-                  ></i>
-                  <span>ACESSO AO CIDADÃO</span>
+                  >
+                    <circle
+                      cx="8.5"
+                      cy="7"
+                      r="4.5"
+                      fill="#f97316"
+                      stroke="#7c2d12"
+                      stroke-width="1"
+                    />
+                    <path
+                      d="M1.5 23c.4-5.8 2.7-9 7-9s6.7 3.2 7 9h-14Z"
+                      fill="#0e7490"
+                      stroke="#083344"
+                      stroke-width="1"
+                      stroke-linejoin="round"
+                    />
+                    <rect
+                      x="18"
+                      y="3"
+                      width="12.5"
+                      height="18"
+                      rx="2"
+                      fill="#facc15"
+                      stroke="#854d0e"
+                      stroke-width="1.2"
+                    />
+                    <circle cx="22" cy="9" r="2" fill="#7c2d12" />
+                    <path
+                      d="M25 8h3m-6 5h6m-6 3h6"
+                      stroke="#164e63"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  <span>LOGIN CIDADÃO</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
 
@@ -468,6 +458,17 @@
           <button
             class="portal-category-card"
             type="button"
+            data-service-shortcut="urbanismo"
+          >
+            <span class="portal-category-icon category-urbanism" aria-hidden="true">
+              <i class="fa-solid fa-city"></i>
+            </span>
+            <span class="portal-category-name">Urbanismo</span>
+            <span class="portal-category-description">Imóveis e regularização</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
             data-service-shortcut="atendimento"
           >
             <span
@@ -518,6 +519,17 @@
           <button
             class="portal-category-card"
             type="button"
+            data-service-shortcut="emprego-renda"
+          >
+            <span class="portal-category-icon category-employment" aria-hidden="true">
+              <i class="fa-solid fa-briefcase"></i>
+            </span>
+            <span class="portal-category-name">Emprego e Renda</span>
+            <span class="portal-category-description">Trabalho e empreendedorismo</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
             data-service-shortcut="cultura-lazer"
           >
             <span
@@ -528,6 +540,31 @@
             </span>
             <span class="portal-category-name">Turismo, Cultura<br />e Esporte</span>
             <span class="portal-category-description">Eventos e espaços públicos</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="mobilidade"
+          >
+            <span class="portal-category-icon category-mobility" aria-hidden="true">
+              <i class="fa-solid fa-bus"></i>
+            </span>
+            <span class="portal-category-name">Mobilidade</span>
+            <span class="portal-category-description">Transporte e circulação</span>
+          </button>
+          <button
+            class="portal-category-card"
+            type="button"
+            data-service-shortcut="servicos-urbanos"
+          >
+            <span
+              class="portal-category-icon category-city-services"
+              aria-hidden="true"
+            >
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </span>
+            <span class="portal-category-name">Serviços Urbanos</span>
+            <span class="portal-category-description">Serviços públicos e meio ambiente</span>
           </button>
           <button
             class="portal-category-card"
@@ -675,9 +712,10 @@
             <div class="portal-panel-heading">
               <h2 id="directions-title">Como chegar</h2>
             </div>
-            <div class="directions-map">
+            <div class="directions-map" aria-label="Como chegar - Mapa do Google">
               <iframe
-                title="Mapa de Arraial do Cabo"
+                title="Como chegar - Mapa do Google"
+                aria-label="Como chegar - Mapa do Google"
                 src="https://www.google.com/maps?q=-22.9667,-42.0267&amp;z=15&amp;output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer"
@@ -702,7 +740,11 @@
             <div class="weather-feature-content">
               <p class="weather-location">Previsão do Tempo - Arraial do Cabo</p>
               <i class="fa-solid fa-cloud-sun weather-feature-icon" aria-hidden="true"></i>
-              <div id="TT_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53">
+              <div
+                class="weather-forecast-widget"
+                id="TT_JC6111E1Ec1waeLUKKzzjzDDjUuU1zclbdktEciIa1j5GIG53"
+                aria-label="Previsão do tempo para vários dias em Arraial do Cabo"
+              >
                 <a href="https://pt.tutiempo.net/arraial-do-cabo.html">Tempo em Arraial do Cabo</a>
               </div>
               <a
@@ -1231,7 +1273,7 @@
 
     <!-- JavaScript leve para controle da navegação em telas de celular -->
     <script src="js/servicos-presenciais-detalhes.js"></script>
-    <script src="js/servicos-preview.js?v=9"></script>
+    <script src="js/servicos-preview.js?v=10"></script>
     <script>
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
@@ -1338,6 +1380,40 @@
       }
 
       serviceDirectoryCount.textContent = `${serviceCards.length} serviços`;
+      document.querySelectorAll(".portal-category-card").forEach((card) => {
+        let categoryServiceCount;
+        if (card.dataset.serviceShortcut === "all") {
+          categoryServiceCount = serviceCards.length;
+        } else if (card.dataset.serviceShortcut) {
+          categoryServiceCount = serviceCards.filter(
+            (service) =>
+              service.dataset.serviceCategory === card.dataset.serviceShortcut,
+          ).length;
+        } else if (card.dataset.serviceModalityShortcut) {
+          categoryServiceCount = serviceCards.filter(
+            (service) =>
+              service.dataset.modality ===
+              card.dataset.serviceModalityShortcut,
+          ).length;
+        } else {
+          throw new Error("Um atalho de serviço está sem categoria ou modalidade.");
+        }
+
+        const countBadge = document.createElement("span");
+        countBadge.className = "portal-category-count";
+        countBadge.setAttribute("aria-hidden", "true");
+        countBadge.textContent = String(categoryServiceCount);
+
+        const accessibleCount = document.createElement("span");
+        accessibleCount.className = "sr-only";
+        accessibleCount.textContent =
+          `${categoryServiceCount} ${
+            categoryServiceCount === 1 ? "serviço" : "serviços"
+          }`;
+
+        card.append(countBadge, accessibleCount);
+      });
+
       let selectedServiceCategory = "all";
       let selectedServiceModality = "all";
 
@@ -1484,24 +1560,277 @@
         setHighContrast(!document.body.classList.contains("high-contrast"));
       });
 
+      const semanticSpeakableSelector =
+        "h1, h2, h3, h4, h5, h6, p, a, button, iframe, label, li, td, th, " +
+        "summary, [role='button'], [aria-label], img[alt], input, select, textarea";
       const speakableSelector =
-        "h1, h2, h3, h4, h5, h6, p, a, button, label, li, td, th, " +
-        "summary, strong, small, span, [role='button'], [aria-label], " +
-        "img[alt], input, select, textarea";
-      const speechSynthesisApi = window.speechSynthesis;
+        semanticSpeakableSelector + ", strong, small, span";
+      const AudioContextConstructor =
+        window.AudioContext || window.webkitAudioContext;
+      const speechStatus = document.querySelector(".speech-status");
 
-      if (
-        !speechSynthesisApi ||
-        typeof window.SpeechSynthesisUtterance !== "function"
-      ) {
+      if (window.location.protocol === "file:") {
+        speechToggle.disabled = true;
+        speechToggle.setAttribute(
+          "aria-label",
+          "Leitura por voz indisponível: abra o portal por HTTP ou HTTPS",
+        );
+        speechToggle.title =
+          "A leitura por voz exige que o portal seja aberto por HTTP ou HTTPS, não diretamente pelo arquivo.";
+      } else if (!AudioContextConstructor) {
         speechToggle.disabled = true;
         speechToggle.title =
           "A leitura por voz não está disponível neste navegador.";
       } else {
         let lastSpokenText = "";
         let lastSpokenTarget = null;
+        let pendingSpeechTimer = null;
+        let speechRequestId = 0;
+        let piperSessionPromise = null;
+        let piperSessionReady = false;
+        let speechQueue = Promise.resolve();
+        let audioContext = null;
+        let currentAudioSource = null;
+
+        function stopSpeaking() {
+          speechRequestId += 1;
+          if (pendingSpeechTimer !== null) {
+            window.clearTimeout(pendingSpeechTimer);
+            pendingSpeechTimer = null;
+          }
+
+          if (currentAudioSource) {
+            currentAudioSource.stop();
+            currentAudioSource.disconnect();
+            currentAudioSource = null;
+          }
+          if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+          }
+        }
+
+        function reportSpeechError(error, requestId) {
+          if (requestId !== speechRequestId) {
+            return;
+          }
+
+          console.error("Não foi possível gerar a leitura por voz.", error);
+          stopSpeaking();
+          lastSpokenText = "";
+          lastSpokenTarget = null;
+          speechToggle.setAttribute("aria-pressed", "false");
+          speechToggle.setAttribute(
+            "aria-label",
+            "Leitor de Tela: leitura por voz indisponível",
+          );
+          speechToggle.title =
+            "Não foi possível gerar o áudio da leitura por voz.";
+          speechStatus.textContent =
+            "A leitura por voz está indisponível. Verifique se os arquivos locais da voz estão acessíveis.";
+        }
+
+        function loadPiperSession() {
+          piperSessionPromise ??= import(
+            "./vendor/piper-tts-web/piper-tts-web.js"
+          ).then(({ TtsSession }) =>
+            TtsSession.create({
+              voiceId: "pt_BR-faber-medium",
+              wasmPaths: {
+                onnxWasm: new URL(
+                  "./vendor/onnxruntime-web/",
+                  document.baseURI,
+                ).href,
+                piperData: new URL(
+                  "./vendor/piper-wasm/piper_phonemize.data",
+                  document.baseURI,
+                ).href,
+                piperWasm: new URL(
+                  "./vendor/piper-wasm/piper_phonemize.wasm",
+                  document.baseURI,
+                ).href,
+              },
+              progress: ({ loaded, total }) => {
+                if (
+                  speechToggle.getAttribute("aria-pressed") !== "true" ||
+                  !Number.isFinite(total) ||
+                  total <= 0
+                ) {
+                  return;
+                }
+
+                const percent = Math.round((loaded / total) * 100);
+                speechStatus.textContent =
+                  `Carregando voz neural offline: ${percent}%.`;
+                speechToggle.title = speechStatus.textContent;
+              },
+            }),
+          ).then((session) => {
+            piperSessionReady = true;
+            if (speechToggle.getAttribute("aria-pressed") === "true") {
+              speechStatus.textContent = "";
+              speechToggle.title =
+                "Desativar leitura por voz ao passar o cursor";
+            }
+            return session;
+          });
+          return piperSessionPromise;
+        }
+
+        async function synthesizeAndPlay(text, requestId) {
+          if (requestId !== speechRequestId) {
+            return;
+          }
+
+          const session = await loadPiperSession();
+
+          if (requestId !== speechRequestId) {
+            return;
+          }
+
+          speechStatus.textContent = "Gerando leitura por voz.";
+          const audioBlob = await session.predict(text);
+          const audioBuffer = await audioContext.decodeAudioData(
+            await audioBlob.arrayBuffer(),
+          );
+
+          if (requestId !== speechRequestId) {
+            return;
+          }
+
+          const source = audioContext.createBufferSource();
+          source.buffer = audioBuffer;
+          source.connect(audioContext.destination);
+          source.addEventListener(
+            "ended",
+            () => {
+              if (currentAudioSource === source) {
+                currentAudioSource = null;
+              }
+              source.disconnect();
+            },
+            { once: true },
+          );
+          currentAudioSource = source;
+          source.start();
+          speechStatus.textContent = "";
+          speechToggle.title = "Desativar leitura por voz ao passar o cursor";
+        }
+
+        function speakWithBrowser(text, requestId) {
+          if (
+            !("speechSynthesis" in window) ||
+            typeof SpeechSynthesisUtterance === "undefined"
+          ) {
+            return false;
+          }
+
+          try {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "pt-BR";
+            const portugueseVoice = window.speechSynthesis
+              .getVoices()
+              .find((voice) => voice.lang.toLowerCase() === "pt-br");
+            if (portugueseVoice) {
+              utterance.voice = portugueseVoice;
+            }
+            utterance.onerror = (event) => {
+              if (requestId === speechRequestId) {
+                console.error(
+                  "Não foi possível gerar a leitura pela voz do navegador.",
+                  event.error,
+                );
+              }
+            };
+            window.speechSynthesis.speak(utterance);
+            speechStatus.textContent =
+              "Usando a voz do navegador enquanto a voz neural carrega.";
+            speechToggle.title = speechStatus.textContent;
+            return true;
+          } catch (error) {
+            console.error(
+              "Não foi possível iniciar a voz do navegador.",
+              error,
+            );
+            return false;
+          }
+        }
+
+        function speakText(text, delay = 0) {
+          const requestId = ++speechRequestId;
+          if (!piperSessionPromise) {
+            speechStatus.textContent =
+              "Carregando a voz neural offline. A primeira leitura pode demorar.";
+            speechToggle.title = speechStatus.textContent;
+          }
+          if (pendingSpeechTimer !== null) {
+            window.clearTimeout(pendingSpeechTimer);
+            pendingSpeechTimer = null;
+          }
+          if (currentAudioSource) {
+            currentAudioSource.stop();
+            currentAudioSource.disconnect();
+            currentAudioSource = null;
+          }
+          if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+          }
+
+          if (!piperSessionReady && speakWithBrowser(text, requestId)) {
+            loadPiperSession().catch((error) => {
+              if (requestId !== speechRequestId) {
+                return;
+              }
+              console.error(
+                "Não foi possível carregar a voz neural offline.",
+                error,
+              );
+              speechStatus.textContent =
+                "A voz neural está indisponível. A voz do navegador continuará ativa.";
+              speechToggle.title = speechStatus.textContent;
+            });
+            return;
+          }
+
+          try {
+            audioContext ??= new AudioContextConstructor();
+          } catch (error) {
+            reportSpeechError(error, requestId);
+            return;
+          }
+
+          audioContext.resume().catch((error) => {
+            reportSpeechError(error, requestId);
+          });
+          pendingSpeechTimer = window.setTimeout(() => {
+            pendingSpeechTimer = null;
+            speechQueue = speechQueue
+              .then(() => synthesizeAndPlay(text, requestId))
+              .catch((error) => reportSpeechError(error, requestId));
+          }, delay);
+        }
 
         function getSpeakableText(target) {
+          if (target.matches(".speech-toggle")) {
+            return "Oi! Sou Anderson, seu assistente de tela";
+          }
+
+          if (target.closest(".weather-forecast-widget")) {
+            return "Previsão do tempo para vários dias em Arraial do Cabo";
+          }
+
+          if (target.closest(".directions-map")) {
+            return "Como chegar - Mapa do Google";
+          }
+
+          if (target.closest(".portal-appearance-controls")) {
+            const visibleLabel = target.querySelector
+              ? target.querySelector(".theme-toggle-label, span")?.innerText
+              : "";
+            if (visibleLabel) {
+              return visibleLabel.replace(/\s+/g, " ").trim();
+            }
+          }
+
           return (
             target.getAttribute("aria-label") ||
             target.getAttribute("alt") ||
@@ -1514,6 +1843,13 @@
             .trim();
         }
 
+        function getSpeakableTarget(element) {
+          return (
+            element.closest(semanticSpeakableSelector) ||
+            element.closest(speakableSelector)
+          );
+        }
+
         function readHoveredContent(event) {
           if (speechToggle.getAttribute("aria-pressed") !== "true") {
             return;
@@ -1523,17 +1859,28 @@
             return;
           }
 
-          let target = event.target.closest(speakableSelector);
+          let target = getSpeakableTarget(event.target);
           let text = target ? getSpeakableText(target) : "";
 
           while (target && !text) {
-            target = target.parentElement?.closest(speakableSelector) ?? null;
+            target = target.parentElement
+              ? getSpeakableTarget(target.parentElement)
+              : null;
             text = target ? getSpeakableText(target) : "";
+          }
+
+          text = text.replace(/\bon-line\b/gi, "on-láine");
+
+          if (
+            target &&
+            target.closest(".portal-appearance-controls") &&
+            !(target instanceof HTMLButtonElement)
+          ) {
+            return;
           }
 
           if (
             !target ||
-            target.closest(".portal-appearance-controls") ||
             !text ||
             text === lastSpokenText
           ) {
@@ -1542,10 +1889,7 @@
 
           lastSpokenText = text;
           lastSpokenTarget = target;
-          speechSynthesisApi.cancel();
-          const utterance = new window.SpeechSynthesisUtterance(text);
-          utterance.lang = "pt-BR";
-          speechSynthesisApi.speak(utterance);
+          speakText(text);
         }
 
         speechToggle.addEventListener("click", () => {
@@ -1553,25 +1897,25 @@
           speechToggle.setAttribute("aria-pressed", String(isEnabled));
           speechToggle.setAttribute(
             "aria-label",
-            `Deficiente Visual: ${isEnabled ? "desativar" : "ativar"} leitura por voz`,
+            `Leitor de Tela: ${isEnabled ? "desativar" : "ativar"} leitura por voz`,
           );
           speechToggle.title = isEnabled
             ? "Desativar leitura por voz ao passar o cursor"
             : "Ativar leitura por voz ao passar o cursor";
 
           if (isEnabled) {
-            const instruction =
-              "Leitura por voz ativada. Passe o cursor sobre o conteúdo para ouvir.";
+            const instruction = "Oi! Sou Anderson seu assistente de tela.";
             lastSpokenText = instruction;
             lastSpokenTarget = null;
-            speechSynthesisApi.cancel();
-            const utterance = new window.SpeechSynthesisUtterance(instruction);
-            utterance.lang = "pt-BR";
-            speechSynthesisApi.speak(utterance);
+            speechStatus.textContent =
+              "Carregando a voz neural offline. A primeira leitura pode demorar.";
+            speechToggle.title = speechStatus.textContent;
+            speakText(instruction);
           } else {
-            speechSynthesisApi.cancel();
+            stopSpeaking();
             lastSpokenText = "";
             lastSpokenTarget = null;
+            speechStatus.textContent = "";
           }
         });
 
@@ -1582,7 +1926,7 @@
             return;
           }
 
-          const target = event.target.closest(speakableSelector);
+          const target = getSpeakableTarget(event.target);
           const relatedTarget =
             event.relatedTarget instanceof Node ? event.relatedTarget : null;
 

@@ -197,6 +197,13 @@ body::before {
   font-size: 16px;
 }
 
+.nav-dropdown-illustration {
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 24px;
+}
+
 .nav-dropdown-toggle .fa-chevron-down {
   font-size: 12px;
   transition: transform 0.2s ease;
@@ -2004,6 +2011,7 @@ body.high-contrast::before {
 
 .portal-category-card {
   display: flex;
+  position: relative;
   min-width: 0;
   min-height: 112px;
   flex-direction: column;
@@ -2022,6 +2030,25 @@ body.high-contrast::before {
   backdrop-filter: blur(14px) saturate(150%);
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.portal-category-count {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  display: grid;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  place-items: center;
+  color: #536b7d;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(81, 103, 126, 0.14);
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .portal-category-card:hover {
@@ -2054,7 +2081,11 @@ body.high-contrast::before {
 .category-health { background: #ff8585; }
 .category-education { background: #ffd44e; }
 .category-social { background: #bda2ef; }
+.category-urbanism { background: #a9bfe3; }
+.category-employment { background: #f5bb78; }
 .category-tourism { background: #62cbd0; }
+.category-mobility { background: #8cc9ef; }
+.category-city-services { background: #a9cc9d; }
 .category-staff { background: #ff9a68; }
 .category-transparency { background: #c7c9c9; }
 .category-online { background: #82c8e8; }
@@ -2331,6 +2362,12 @@ body.high-contrast::before {
   color: #bac8d0;
 }
 
+.dark-theme .portal-category-count {
+  color: #c5d5df;
+  background: rgba(13, 22, 29, 0.7);
+  border-color: rgba(190, 216, 229, 0.2);
+}
+
 .dark-theme .popular-links-list li {
   border-color: rgba(190, 216, 229, 0.14);
 }
@@ -2351,6 +2388,12 @@ body.high-contrast::before {
 .high-contrast .portal-panel-heading h2,
 .high-contrast .popular-links-list a {
   color: #ffffff;
+}
+
+.high-contrast .portal-category-count {
+  color: #ffff00;
+  background: #000000;
+  border-color: #ffff00;
 }
 
 @media (max-width: 1100px) {
@@ -2759,8 +2802,8 @@ body.high-contrast::before {
 #menuPanel {
   right: auto;
   left: 0;
-  width: min(1440px, calc(100vw - 56px));
-  overflow-x: auto;
+  width: min(680px, calc(100vw - 280px));
+  overflow-x: hidden;
 }
 
 .service-offerings-catalog .service-catalog-header {
@@ -2812,10 +2855,8 @@ body.high-contrast::before {
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 7px;
-  max-height: min(44vh, 390px);
-  overflow-y: auto;
+  overflow: visible;
   padding: 2px 6px 2px 2px;
-  scrollbar-gutter: stable;
 }
 
 #autarquiasMenu .institution-menu-list {
@@ -2841,15 +2882,16 @@ body.high-contrast::before {
 }
 
 .gov-services-category .institution-menu-list a {
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: 6px;
-  min-height: 138px;
+  min-height: 0;
+  padding: 6px 8px;
 }
 
 .gov-services-category .institution-menu-label {
   flex: 1 1 auto;
-  width: 100%;
+  width: auto;
   min-width: 0;
   overflow-wrap: anywhere;
 }
@@ -3534,8 +3576,18 @@ body.high-contrast::before {
 }
 
 @media (max-width: 900px) {
+  #menuPanel,
   #autarquiasMenu {
     width: calc(50vw - 24px);
+  }
+
+  #menuPanel .gov-services-category .institution-menu-list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  #menuPanel .gov-services-category .institution-menu-list > li {
+    flex-basis: auto;
   }
 
   #autarquiasMenu .institution-menu-list {
@@ -3613,10 +3665,10 @@ body.high-contrast::before {
 
 .gov-services-category .institution-menu-list li a,
 #autarquiasMenu .institution-menu-list li a {
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
   min-height: 0;
-  padding: 9px 10px;
+  padding: 6px 8px;
   border-radius: 7px;
 }
 
@@ -3645,9 +3697,9 @@ body.high-contrast::before {
 
 .gov-services-category .institution-menu-list li a .service-catalog-icon {
   display: block;
-  flex: 0 0 56px;
-  width: 56px;
-  height: 44px;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
   background: transparent;
   border: 0;
   border-radius: 0;
