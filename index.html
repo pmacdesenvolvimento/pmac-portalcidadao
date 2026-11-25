@@ -1406,10 +1406,27 @@
 
         const accessibleCount = document.createElement("span");
         accessibleCount.className = "sr-only";
-        accessibleCount.textContent =
+        const serviceCountLabel =
           `${categoryServiceCount} ${
             categoryServiceCount === 1 ? "serviço" : "serviços"
           }`;
+        accessibleCount.textContent = serviceCountLabel;
+
+        const categoryName = card
+          .querySelector(".portal-category-name")
+          ?.innerText.trim();
+        const categoryDescription = card
+          .querySelector(".portal-category-description")
+          ?.innerText.trim();
+
+        if (!categoryName || !categoryDescription) {
+          throw new Error("Um atalho de serviço está sem nome ou descrição.");
+        }
+
+        card.setAttribute(
+          "aria-label",
+          `${categoryName}. ${categoryDescription}. ${serviceCountLabel}.`,
+        );
 
         card.append(countBadge, accessibleCount);
       });
@@ -1582,8 +1599,12 @@
         let lastSpokenTarget = null;
         let pendingSpeechTimer = null;
         let speechRequestId = 0;
-        let piperSessionPromise = null;
-        let piperSessionReady = false;
+        let femaleVoiceWorker = null;
+        let femaleVoiceReadyPromise = null;
+        let femaleVoiceReady = false;
+        let voiceRequestId = 0;
+        const FEMALE_VOICE_INDEX = 0;
+        const voiceRequests = new Map();
         let speechQueue = Promise.resolve();
         let audioContext = null;
         let currentAudioSource = null;
@@ -1599,9 +1620,6 @@
             currentAudioSource.stop();
             currentAudioSource.disconnect();
             currentAudioSource = null;
-          }
-          if ("speechSynthesis" in window) {
-            window.speechSynthesis.cancel();
           }
         }
 
@@ -1625,51 +1643,105 @@
             "A leitura por voz está indisponível. Verifique se os arquivos locais da voz estão acessíveis.";
         }
 
-        function loadPiperSession() {
-          piperSessionPromise ??= import(
-            "./vendor/piper-tts-web/piper-tts-web.js"
-          ).then(({ TtsSession }) =>
-            TtsSession.create({
-              voiceId: "pt_BR-faber-medium",
-              wasmPaths: {
-                onnxWasm: new URL(
-                  "./vendor/onnxruntime-web/",
-                  document.baseURI,
-                ).href,
-                piperData: new URL(
-                  "./vendor/piper-wasm/piper_phonemize.data",
-                  document.baseURI,
-                ).href,
-                piperWasm: new URL(
-                  "./vendor/piper-wasm/piper_phonemize.wasm",
-                  document.baseURI,
-                ).href,
-              },
-              progress: ({ loaded, total }) => {
-                if (
-                  speechToggle.getAttribute("aria-pressed") !== "true" ||
-                  !Number.isFinite(total) ||
-                  total <= 0
-                ) {
-                  return;
-                }
+        function loadFemaleVoice() {
+          if (femaleVoiceReadyPromise) {
+            return femaleVoiceReadyPromise;
+          }
 
-                const percent = Math.round((loaded / total) * 100);
-                speechStatus.textContent =
-                  `Carregando voz neural offline: ${percent}%.`;
-                speechToggle.title = speechStatus.textContent;
-              },
-            }),
-          ).then((session) => {
-            piperSessionReady = true;
-            if (speechToggle.getAttribute("aria-pressed") === "true") {
-              speechStatus.textContent = "";
-              speechToggle.title =
-                "Desativar leitura por voz ao passar o cursor";
-            }
-            return session;
+          let rejectLoading;
+          femaleVoiceReadyPromise = new Promise((resolve, reject) => {
+            rejectLoading = reject;
+            femaleVoiceWorker = new Worker(
+              new URL(
+                "./vendor/tiny-voca-ptbr/worker.js?v=spell-iptu-itbi",
+                document.baseURI,
+              ),
+              { type: "module" },
+            );
+            femaleVoiceWorker.addEventListener("message", ({ data }) => {
+              if (data.type === "status") {
+                if (
+                  speechToggle.getAttribute("aria-pressed") === "true"
+                ) {
+                  const progress = Number.isFinite(data.progress)
+                    ? `: ${Math.round(data.progress * 100)}%`
+                    : "";
+                  speechStatus.textContent =
+                    `${data.text}${progress}.`;
+                  speechToggle.title = speechStatus.textContent;
+                }
+                return;
+              }
+
+              if (data.type === "ready") {
+                femaleVoiceReady = true;
+                if (speechToggle.getAttribute("aria-pressed") === "true") {
+                  speechStatus.textContent = "";
+                  speechToggle.title =
+                    "Desativar leitura por voz ao passar o cursor";
+                }
+                resolve(data);
+                return;
+              }
+
+              if (data.type === "done" || data.type === "error") {
+                const request = voiceRequests.get(data.id);
+                if (request) {
+                  voiceRequests.delete(data.id);
+                  if (data.type === "error") {
+                    request.reject(new Error(data.message));
+                  } else {
+                    request.resolve({
+                      audio: data.audio,
+                      sampleRate: data.sampleRate,
+                    });
+                  }
+                } else if (data.type === "error" && !femaleVoiceReady) {
+                  rejectLoading(new Error(data.message));
+                }
+              }
+            });
+            femaleVoiceWorker.addEventListener("error", (event) => {
+              const error =
+                event.error || new Error(event.message || "Falha na voz local.");
+              if (!femaleVoiceReady) {
+                rejectLoading(error);
+              }
+              for (const [id, request] of voiceRequests) {
+                voiceRequests.delete(id);
+                request.reject(error);
+              }
+            });
+            femaleVoiceWorker.postMessage({
+              type: "load",
+              provider: "wasm",
+            });
           });
-          return piperSessionPromise;
+          return femaleVoiceReadyPromise;
+        }
+
+        async function synthesizeWithFemaleVoice(text, requestId) {
+          await loadFemaleVoice();
+          if (requestId !== speechRequestId) {
+            return null;
+          }
+
+          const id = ++voiceRequestId;
+          return new Promise((resolve, reject) => {
+            voiceRequests.set(id, { resolve, reject });
+            try {
+              femaleVoiceWorker.postMessage({
+                type: "speak",
+                id,
+                text,
+                voice: FEMALE_VOICE_INDEX,
+                speed: 1,
+              });
+            } catch (error) {
+              voiceRequests.delete(id);
+              reject(error);
+            }
+          });
         }
 
         async function synthesizeAndPlay(text, requestId) {
@@ -1677,21 +1749,22 @@
             return;
           }
 
-          const session = await loadPiperSession();
-
-          if (requestId !== speechRequestId) {
-            return;
-          }
-
           speechStatus.textContent = "Gerando leitura por voz.";
-          const audioBlob = await session.predict(text);
-          const audioBuffer = await audioContext.decodeAudioData(
-            await audioBlob.arrayBuffer(),
-          );
-
-          if (requestId !== speechRequestId) {
+          const result = await synthesizeWithFemaleVoice(text, requestId);
+          if (!result || requestId !== speechRequestId) {
             return;
           }
+
+          const samples =
+            result.audio instanceof Float32Array
+              ? result.audio
+              : Float32Array.from(result.audio);
+          const audioBuffer = audioContext.createBuffer(
+            1,
+            samples.length,
+            result.sampleRate,
+          );
+          audioBuffer.getChannelData(0).set(samples);
 
           const source = audioContext.createBufferSource();
           source.buffer = audioBuffer;
@@ -1712,50 +1785,11 @@
           speechToggle.title = "Desativar leitura por voz ao passar o cursor";
         }
 
-        function speakWithBrowser(text, requestId) {
-          if (
-            !("speechSynthesis" in window) ||
-            typeof SpeechSynthesisUtterance === "undefined"
-          ) {
-            return false;
-          }
-
-          try {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = "pt-BR";
-            const portugueseVoice = window.speechSynthesis
-              .getVoices()
-              .find((voice) => voice.lang.toLowerCase() === "pt-br");
-            if (portugueseVoice) {
-              utterance.voice = portugueseVoice;
-            }
-            utterance.onerror = (event) => {
-              if (requestId === speechRequestId) {
-                console.error(
-                  "Não foi possível gerar a leitura pela voz do navegador.",
-                  event.error,
-                );
-              }
-            };
-            window.speechSynthesis.speak(utterance);
-            speechStatus.textContent =
-              "Usando a voz do navegador enquanto a voz neural carrega.";
-            speechToggle.title = speechStatus.textContent;
-            return true;
-          } catch (error) {
-            console.error(
-              "Não foi possível iniciar a voz do navegador.",
-              error,
-            );
-            return false;
-          }
-        }
-
         function speakText(text, delay = 0) {
           const requestId = ++speechRequestId;
-          if (!piperSessionPromise) {
+          if (!femaleVoiceReady) {
             speechStatus.textContent =
-              "Carregando a voz neural offline. A primeira leitura pode demorar.";
+              "Carregando a voz feminina offline. A primeira leitura pode demorar.";
             speechToggle.title = speechStatus.textContent;
           }
           if (pendingSpeechTimer !== null) {
@@ -1767,26 +1801,6 @@
             currentAudioSource.disconnect();
             currentAudioSource = null;
           }
-          if ("speechSynthesis" in window) {
-            window.speechSynthesis.cancel();
-          }
-
-          if (!piperSessionReady && speakWithBrowser(text, requestId)) {
-            loadPiperSession().catch((error) => {
-              if (requestId !== speechRequestId) {
-                return;
-              }
-              console.error(
-                "Não foi possível carregar a voz neural offline.",
-                error,
-              );
-              speechStatus.textContent =
-                "A voz neural está indisponível. A voz do navegador continuará ativa.";
-              speechToggle.title = speechStatus.textContent;
-            });
-            return;
-          }
-
           try {
             audioContext ??= new AudioContextConstructor();
           } catch (error) {
@@ -1807,7 +1821,7 @@
 
         function getSpeakableText(target) {
           if (target.matches(".speech-toggle")) {
-            return "Oi! Sou Anderson, seu assistente de tela";
+            return "Assistente de tela. Ativada";
           }
 
           if (target.closest(".weather-forecast-widget")) {
@@ -1900,11 +1914,11 @@
             : "Ativar leitura por voz ao passar o cursor";
 
           if (isEnabled) {
-            const instruction = "Oi! Sou Anderson seu assistente de tela.";
+            const instruction = "Assistente de tela. Ativada";
             lastSpokenText = instruction;
             lastSpokenTarget = null;
             speechStatus.textContent =
-              "Carregando a voz neural offline. A primeira leitura pode demorar.";
+              "Carregando a voz feminina offline. A primeira leitura pode demorar.";
             speechToggle.title = speechStatus.textContent;
             speakText(instruction);
           } else {

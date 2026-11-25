@@ -1,17 +1,19 @@
 # Third-party notices
 
-- `@mintplex-labs/piper-tts-web` 1.0.5 — MIT, copyright Mintplex Labs. Source:
-  https://github.com/Mintplex-Labs/piper-tts-web
-- `@diffusionstudio/piper-wasm` 1.0.0 — MIT, copyright Konstantin Paulus.
-  Source:
-  https://github.com/diffusionstudio/piper-wasm
 - `onnxruntime-web` 1.18.0 — MIT, copyright Microsoft Corporation.
-- `rhasspy/piper-voices` `pt_BR-faber-medium` — MIT, copyright Rhasspy. Its
-  model card and the dataset's CC0 license are included beside the model.
-- The eSpeak NG phonemizer data embedded in `piper_phonemize.data` is
-  GPL-3.0-or-later; its license is included as
-  [`piper-wasm/espeak-ng-LICENSE`](./piper-wasm/espeak-ng-LICENSE). Source:
-  https://github.com/espeak-ng/espeak-ng
+- The screen reader uses the locally bundled `tiny-voca-ptbr` `F_s4` female
+  voice from SemFence (Gustavo Toledo), model revision
+  `f231cbe318c9f972e27fd8dad5d8ebcfb40a672f`, under CC BY 4.0. Attribution
+  and the full license are included in
+  [`tiny-voca-ptbr/NOTICE`](./tiny-voca-ptbr/NOTICE) and
+  [`tiny-voca-ptbr/LICENSE-CC-BY-4.0.txt`](./tiny-voca-ptbr/LICENSE-CC-BY-4.0.txt).
+- The `tiny-voca-ptbr` frontend, Dizione phonemizer, and tokenizer are Apache
+  License 2.0; the notice and license are included in
+  [`tiny-voca-ptbr/NOTICE`](./tiny-voca-ptbr/NOTICE) and
+  [`tiny-voca-ptbr/LICENSE-APACHE-2.0.txt`](./tiny-voca-ptbr/LICENSE-APACHE-2.0.txt).
+  The adapted Montreal Forced Aligner Portuguese dictionary is CC BY 4.0; its
+  source and modifications are documented in
+  [`tiny-voca-ptbr/dizione/data/LICENSE.mfa-dictionary.md`](./tiny-voca-ptbr/dizione/data/LICENSE.mfa-dictionary.md).
 
 MIT license text:
 

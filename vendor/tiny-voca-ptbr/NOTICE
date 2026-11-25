@@ -1,0 +1,12 @@
+tiny-voca-ptbr
+Copyright 2026 SemFence (Gustavo Toledo)
+
+Criado pela SemFence (Gustavo Toledo) - https://semfence.com
+Created by SemFence (Gustavo Toledo) - https://semfence.com
+
+This work is a Brazilian Portuguese (pt-BR) version of tiny-voca, Copyright 2026 Muhammed Nazeem,
+licensed under the Apache License 2.0 (https://github.com/n4ze3m/tiny-voca). It keeps the model design and the
+training recipe; the changes are listed in the README ("O que mudou em relação ao tiny-voca original").
+
+The model weights published at https://huggingface.co/semfence/tiny-voca-ptbr are licensed under CC BY 4.0
+(credit required: SemFence, Gustavo Toledo). This repository's code is licensed under Apache-2.0.

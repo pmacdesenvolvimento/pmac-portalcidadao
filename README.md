@@ -2,10 +2,10 @@
 
 ## Leitura por voz
 
-A leitura usa o Piper neural com a voz brasileira `pt_BR-faber-medium`. A
+A leitura usa o modelo local `tiny-voca-ptbr` com a voz feminina `F_s4`. A
 síntese acontece no navegador; o texto lido não é enviado a um serviço externo.
-Os arquivos da voz e do mecanismo ficam em `vendor/` e somam aproximadamente
-92 MB.
+O modelo, o fonemizador e seus dados ficam em `vendor/tiny-voca-ptbr/`; o
+ONNX Runtime compartilhado fica em `vendor/onnxruntime-web/`.
 
 Sirva o projeto por HTTP ou HTTPS para usar a leitura por voz. Navegadores
 bloqueiam o carregamento de módulos e WebAssembly quando a página é aberta
