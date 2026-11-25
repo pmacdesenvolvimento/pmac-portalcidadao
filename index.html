@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal Cidadão</title>
-    <link rel="stylesheet" href="css/style.css?v=54" />
+    <link rel="stylesheet" href="css/style.css?v=58" />
     <!-- Ícones do Font Awesome -->
     <link
       rel="stylesheet"
@@ -127,7 +127,7 @@
                     <path d="M15 2 28 10 15 18 2 10Z" fill="#ffdf00" />
                     <circle cx="15" cy="10" r="4.8" fill="#002776" />
                   </svg>
-                  <span>ACESSE GOV.BR</span>
+                  <span>Acesse GOV.BR</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
 
@@ -266,7 +266,7 @@
                       stroke-width="1"
                     />
                   </svg>
-                  <span>AUTARQUIAS</span>
+                  <span>Autarquias</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
 
@@ -354,7 +354,7 @@
                       stroke-linecap="round"
                     />
                   </svg>
-                  <span>LOGIN CIDADÃO</span>
+                  <span>Login Cidadão</span>
                   <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                 </button>
 
@@ -1309,7 +1309,7 @@
 
     <!-- JavaScript leve para controle da navegação em telas de celular -->
     <script src="js/servicos-presenciais-detalhes.js"></script>
-    <script src="js/servicos-preview.js?v=11"></script>
+    <script src="js/servicos-preview.js?v=12"></script>
     <script>
       const menuToggle = document.getElementById("menuToggle");
       const sidebar = document.getElementById("sidebar");
@@ -1372,12 +1372,27 @@
         .querySelectorAll(".home-services-grid > .service-card")
         .forEach((card, index) => {
           const title = card.querySelector("h3");
+          const modality = card.dataset.modality;
+
+          if (modality === "ON-LINE") {
+            if (
+              !title ||
+              !card.querySelector(".service-card-online-link") ||
+              !card.dataset.serviceCategory
+            ) {
+              throw new Error("Não foi possível inicializar um card de serviço.");
+            }
+
+            return;
+          }
+
           const details = card.querySelector(".service-card-details");
           const description = details?.querySelector(
             ".service-card-details-content > p",
           );
 
           if (
+            modality !== "PRESENCIAL" ||
             !title ||
             !details ||
             !description ||
@@ -1452,6 +1467,29 @@
       ) {
         throw new Error("Não foi possível inicializar a busca de serviços.");
       }
+
+      const serviceCategoryCard = document.querySelector(
+        ".portal-category-grid .portal-category-card",
+      );
+      if (!serviceCategoryCard) {
+        throw new Error("Não foi possível medir os cards de categorias.");
+      }
+
+      function syncServiceCardHeight() {
+        const categoryCardHeight =
+          serviceCategoryCard.getBoundingClientRect().height;
+        if (categoryCardHeight <= 0) {
+          throw new Error("Não foi possível medir a altura dos cards de categorias.");
+        }
+
+        homeServicesGrid.style.setProperty(
+          "--home-service-card-height",
+          `${categoryCardHeight}px`,
+        );
+      }
+
+      syncServiceCardHeight();
+      new ResizeObserver(syncServiceCardHeight).observe(serviceCategoryCard);
 
       document.querySelectorAll(".portal-category-card").forEach((card) => {
         let categoryServiceCount;

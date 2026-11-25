@@ -487,25 +487,30 @@ serviceDetailsDialog.addEventListener("click", (event) => {
 function getServiceIcon(name) {
   const serviceName = normalizeServiceSearch(name);
   const iconRules = [
+    [/ouvidoria|e-sic|fala br|audiencia publica/, "fa-comments"],
+    [/apreensao de animais/, "fa-paw"],
+    [/ponto de informacoes turisticas/, "fa-map-location-dot"],
+    [/idac digital|governo digital/, "fa-globe"],
+    [/relatorio|transparencia|consulta publica.*ppa|plano plurianual/, "fa-chart-line"],
+    [/meio[- ]ambiente pesquisa ciencia tecnologia/, "fa-flask"],
+    [/meio[- ]ambiente|ambiental|sustent|fundo municipal de meio/, "fa-leaf"],
     [/concurs|seletiv/, "fa-file-signature"],
-    [/saude|hospital|caps|odontolog|oftalm|policlinica|doencas infecciosas|reabilitacao|cnes|cns/, "fa-heart-pulse"],
-    [/escola|colegio|creche|ciep|letivo|escolar|siseduc|educacao|aluno|ensino/, "fa-graduation-cap"],
-    [/cras|creas|social|suas|renda|beneficio|acolhimento|protecao|cadastro unico|crianca feliz|melhor idade|conselho tutelar|direitos humanos|socioassistencial|familia/, "fa-people-group"],
-    [/meio ambiente|ambiental|sustent|fundo municipal de meio/, "fa-leaf"],
+    [/saude|hospital|pronto socorro|caps|odontolog|oftalm|policlinica|doencas infecciosas|reabilitacao|cnes|cns/, "fa-heart-pulse"],
+    [/escola|colegio|creche|ciep|jardim de infancia|letivo|escolar|siseduc|educacao|aluno|ensino/, "fa-graduation-cap"],
+    [/casa do autista|cras|creas|social|suas|renda|beneficio|acolhimento|protecao|cadastro unico|crianca feliz|melhor idade|conselho tutelar|direitos humanos|socioassistencial|familia/, "fa-people-group"],
     [/cultura|cultural|patrimonio|eventos culturais|oficinas culturais/, "fa-masks-theater"],
     [/compra|licitac|edital|chamamento publico/, "fa-file-signature"],
-    [/transparen/, "fa-chart-line"],
-    [/iptu|itbi|\biss\b|isso para autonomos|taxa|tribut|arrecadacao|receita|despesa|divida ativa|fiscal|loa|ppa|ldo|irrf|acordo|pagamento|nota fiscal/, "fa-coins"],
-    [/certidao|protocolo|processo|emissao|documento|diario oficial/, "fa-file-lines"],
-    [/ouvidoria|e-sic|fala br/, "fa-comments"],
-    [/defesa civil|guarda|apreensao|patrulha|junta militar/, "fa-shield-halved"],
     [/transporte|onibus|mobilidade|veiculo|turismo|comtrans|guarda vida|informacoes turisticas/, "fa-bus"],
-    [/servidor|contracheque|ged|webmail|recursos humanos|administrativo|contabilidade|superintendencia|gabinete|secretaria|coordenadoria|administracao/, "fa-building"],
+    [/defesa civil|guarda|patrulha|junta militar|ordem publica|posturas|fiscalizacao/, "fa-shield-halved"],
+    [/iptu|itbi|\biss\b|isso para autonomos|taxa|tribut|arrecadacao|receita|despesa|divida ativa|fiscal(?!izacao)|loa|ppa|ldo|irrf|acordo|pagamento|nota fiscal/, "fa-coins"],
+    [/cadastro imobiliario|regularizacao fundiaria|urbanismo|habitacao|obras|servicos publicos/, "fa-building"],
+    [/certidao|protocolo|processo|emissao|documento|diario oficial/, "fa-file-lines"],
+    [/e-mail|webmail|email/, "fa-envelope"],
+    [/servidor|contracheque|ged|recursos humanos|administrativo|contabilidade|superintendencia|gabinete|secretaria|coordenadoria|administracao/, "fa-building"],
     [/conselho|camara municipal|prefeitura|municipal|idac|fipac|ipc/, "fa-landmark"],
     [/empreendedor|empresa/, "fa-briefcase"],
     [/pesquisa|ciencia|tecnologia|esporte|lazer/, "fa-flask"],
-    [/informat|relatorio|plano|gestao/, "fa-chart-line"],
-    [/e-mail|webmail|email/, "fa-envelope"],
+    [/informat|plano|gestao/, "fa-chart-line"],
   ];
 
   return (
@@ -516,6 +521,9 @@ function getServiceIcon(name) {
 
 const serviceIllustrationsByIcon = new Map([
   ["fa-file-signature", "edital.svg"],
+  ["fa-paw", "animais.svg"],
+  ["fa-map-location-dot", "turismo.svg"],
+  ["fa-globe", "governo-digital.svg"],
   ["fa-heart-pulse", "saude.svg"],
   ["fa-graduation-cap", "educacao.svg"],
   ["fa-people-group", "social.svg"],
@@ -621,10 +629,7 @@ function createHomeServiceCard({ modality, name }, serviceLink) {
   const title = document.createElement("h3");
   const illustration = getServiceIllustration(name);
   const icon = document.createElement("img");
-  const details = document.createElement("div");
-  const detailsContent = document.createElement("div");
-  const summary = document.createElement("p");
-  const action = document.createElement("a");
+  const serviceName = document.createElement("span");
 
   if (!illustration) {
     throw new Error(`Falta ilustração para "${name}".`);
@@ -639,37 +644,53 @@ function createHomeServiceCard({ modality, name }, serviceLink) {
   icon.src = `img/service-icons/${illustration}`;
   icon.alt = "";
   icon.setAttribute("aria-hidden", "true");
-  title.append(icon, document.createTextNode(formatServiceName(name)));
-
-  details.className = "service-card-details";
-  detailsContent.className = "service-card-details-content";
-  summary.textContent =
-    modality === "PRESENCIAL"
-      ? inPersonServiceDetails.get(name)?.find(
-          ({ description, address }) => description || address,
-        )?.description ||
-        inPersonServiceDetails.get(name)?.find(({ address }) => address)
-          ?.address ||
-        "Confira os detalhes de atendimento disponíveis."
-      : "Acesse o portal oficial do serviço.";
-  detailsContent.append(summary);
+  serviceName.className = "service-card-name";
+  serviceName.textContent = formatServiceName(name);
+  title.append(icon, serviceName);
 
   if (modality === "ON-LINE") {
     if (!serviceLink) {
       throw new Error(`Falta link oficial para "${name}".`);
     }
 
-    action.href = serviceLink;
-    action.textContent = "Acessar serviço";
-  } else {
-    action.href = "#serviceDetailsDialog";
-    action.setAttribute("aria-haspopup", "dialog");
-    action.textContent = "Ver atendimento";
-    action.addEventListener("click", (event) => {
-      event.preventDefault();
-      showServiceDetails(name);
-    });
+    const link = document.createElement("a");
+    link.className = "service-card-online-link";
+    link.href = serviceLink;
+    link.setAttribute(
+      "aria-label",
+      `Acessar serviço: ${formatServiceName(name)}`,
+    );
+    card.append(title, link);
+    return card;
   }
+
+  if (modality !== "PRESENCIAL") {
+    throw new Error(`Modalidade inválida para "${name}".`);
+  }
+
+  const details = document.createElement("div");
+  const detailsContent = document.createElement("div");
+  const summary = document.createElement("p");
+  const action = document.createElement("a");
+
+  details.className = "service-card-details";
+  detailsContent.className = "service-card-details-content";
+  summary.textContent =
+    inPersonServiceDetails.get(name)?.find(
+      ({ description, address }) => description || address,
+    )?.description ||
+    inPersonServiceDetails.get(name)?.find(({ address }) => address)
+      ?.address ||
+    "Confira os detalhes de atendimento disponíveis.";
+  detailsContent.append(summary);
+
+  action.href = "#serviceDetailsDialog";
+  action.setAttribute("aria-haspopup", "dialog");
+  action.textContent = "Ver atendimento";
+  action.addEventListener("click", (event) => {
+    event.preventDefault();
+    showServiceDetails(name);
+  });
 
   action.className = "btn";
   detailsContent.append(action);
