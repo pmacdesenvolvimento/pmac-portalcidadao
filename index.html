@@ -359,8 +359,8 @@
                 >
                   <section aria-labelledby="acessoCidadaoHeading">
                     <div class="institution-menu-heading">
-                      <p class="service-catalog-eyebrow">PORTAL DO CIDADÃO</p>
-                      <h2 id="acessoCidadaoHeading">ACESSO AO CIDADÃO</h2>
+                      <p class="service-catalog-eyebrow">PORTAL CIDADÃO</p>
+                      <h2 id="acessoCidadaoHeading">LOGIN CIDADÃO</h2>
                     </div>
                     <div class="sidebar-footer">
                       <div class="user-profile service-account-card">
@@ -1475,12 +1475,8 @@
         }
 
         shortcut.addEventListener("click", () => {
-          if (selectedCategory === "all") {
-            selectedServiceCategory = "all";
-            selectedServiceModality = "all";
-          } else {
-            selectedServiceCategory = selectedCategory;
-          }
+          selectedServiceCategory = selectedCategory;
+          selectedServiceModality = "all";
           updateServiceFilters();
           document
             .getElementById("homeServicesGrid")
